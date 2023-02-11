@@ -1,0 +1,164 @@
+{
+  pkgs,
+  osConfig,
+  ...
+}: {
+  home = {
+    sessionVariables = {
+      EDITOR = "vi";
+      VISUAL = "vi";
+    };
+    packages = with pkgs; [
+      ripgrep
+      tokei
+      htop
+      fd
+      dig
+      whois
+      tig
+      erdtree
+      exa
+    ];
+  };
+
+  programs.skim.enable = true;
+
+  programs.atuin = {
+    enable = true;
+    settings = {
+      style = "compact";
+      inline_height = 10;
+      search_mode = "skim";
+    };
+  };
+
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "tokyonight_moon";
+      editor = {
+        bufferline = "multiple";
+        "line-number" = "relative";
+        "color-modes" = true;
+        "cursorline" = true;
+        lsp = {
+          display-inlay-hints = true;
+        };
+      };
+    };
+  };
+
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "bach" = {
+        extraOptions = {
+          HostName = "192.168.1.17";
+        };
+      };
+      "*compute.amazonaws.com" = {
+        extraOptions = {
+          User = "ec2-user";
+          SetEnv = "TERM=vt100";
+        };
+      };
+    };
+  };
+  programs.starship = {
+    enable = true;
+    settings = {
+      git_status = {
+        ahead = "⇡\${count}";
+        diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
+        behind = "⇣\${count}";
+      };
+    };
+  };
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      s = "kitty +kitten ssh";
+      gs = "git status";
+      gca = "git commit --amend";
+    };
+    shellInit = builtins.readFile ./files/config.fish;
+    plugins = [
+      {
+        name = "fish-colored-man";
+        src = pkgs.fetchFromGitHub {
+          owner = "decors";
+          repo = "fish-colored-man";
+          rev = "1ad8fff696d48c8bf173aa98f9dff39d7916de0e";
+          sha256 = "0l32a5bq3zqndl4ksy5iv988z2nv56a91244gh8mnrjv45wpi1ms";
+        };
+      }
+      {
+        name = "fish-plugin-git";
+        src = pkgs.fetchFromGitHub {
+          owner = "jhillyerd";
+          repo = "plugin-git";
+          rev = "cc5999fa296c18105fb62f1637deec1d12454129";
+          sha256 = "1x2pzhvhkx5c87vddjwniw8ippw19a2hxw0wqxc0kfrdd4pdk81m";
+        };
+      }
+    ];
+  };
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  programs.zoxide.enable = true;
+  programs.fzf.enable = true;
+  programs.tealdeer = {
+    enable = true;
+    settings = {
+      display.use_pager = true;
+      # Updates by default every month.
+      updates.auto_update = true;
+    };
+  };
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "tokyonight";
+    };
+    themes = {
+      tokyonight = builtins.readFile (pkgs.vimPlugins.tokyonight-nvim + "/extras/sublime/tokyonight_moon.tmTheme");
+    };
+  };
+
+  programs.gh.enable = true;
+  programs.git = {
+    enable = true;
+    difftastic = {
+      enable = true;
+      display = "inline";
+    };
+    includes = [
+      {inherit (osConfig.age.secrets.git) path;}
+    ];
+    delta = {
+      # Trying out difftastic
+      enable = false;
+      options = {
+        features = "decorations navigate";
+      };
+    };
+
+    extraConfig = {
+      push.default = "simple";
+      pull.ff = "only";
+      rebase.autosquash = true;
+      alias.fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup";
+    };
+
+    ignores = [".envrc" ".ignore" ".direnv"];
+  };
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
+}
