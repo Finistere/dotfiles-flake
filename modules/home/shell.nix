@@ -17,10 +17,14 @@
       whois
       tig
       erdtree
-      exa
     ];
+    file."erdtree" = {
+      target = ".config/erdtree/.erdtree.toml";
+      text = builtins.readFile ../home/files/.erdtree.toml;
+    };
   };
 
+  programs.exa.enable = true;
   programs.skim.enable = true;
 
   programs.atuin = {
@@ -30,6 +34,7 @@
       inline_height = 10;
       search_mode = "skim";
     };
+    flags = ["--disable-up-arrow"];
   };
 
   programs.helix = {
@@ -80,6 +85,7 @@
       s = "kitty +kitten ssh";
       gs = "git status";
       gca = "git commit --amend";
+      ll = "exa -lga";
     };
     shellInit = builtins.readFile ./files/config.fish;
     plugins = [

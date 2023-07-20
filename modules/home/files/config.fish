@@ -3,10 +3,6 @@
 # Install fish-plugin-git
 emit git_install
 
-function ll
-  ls -alh $argv
-end
-
 function gc
   if count $argv >/dev/null
     git checkout "$argv[1]"

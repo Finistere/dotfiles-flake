@@ -15,7 +15,7 @@
     ];
     home = {
       packages = with pkgs; [];
-      file."kitty.conf" = {
+      file."kitty" = {
         target = ".config/kitty/kitty.conf";
         text =
           builtins.readFile ../home/files/kitty.conf
