@@ -137,16 +137,11 @@
   programs.gh.enable = true;
   programs.git = {
     enable = true;
-    difftastic = {
-      enable = true;
-      display = "inline";
-    };
     includes = [
       {inherit (osConfig.age.secrets.git) path;}
     ];
     delta = {
-      # Trying out difftastic
-      enable = false;
+      enable = true;
       options = {
         features = "decorations navigate";
       };
