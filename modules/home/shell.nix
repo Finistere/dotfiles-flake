@@ -31,7 +31,6 @@
     enable = true;
     settings = {
       style = "compact";
-      inline_height = 10;
       search_mode = "skim";
     };
     flags = ["--disable-up-arrow"];
@@ -77,6 +76,8 @@
         diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
         behind = "⇣\${count}";
       };
+      nodejs.disabled = true;
+      nix_shell.disabled = true;
     };
   };
   programs.fish = {
@@ -85,7 +86,7 @@
       s = "kitty +kitten ssh";
       gs = "git status";
       gca = "git commit --amend";
-      ll = "exa -lga";
+      ll = "exa -lga --group-directories-first";
     };
     shellInit = builtins.readFile ./files/config.fish;
     plugins = [

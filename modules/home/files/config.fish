@@ -12,7 +12,11 @@ function gc
 end
 
 function gb
-  set new_base "$(git branch --sort=-committerdate --color | fzf --ansi --prompt 'onto ' | xargs)"
+  if count $argv >/dev/null
+    set new_base "$argv[1]"
+  else
+    set new_base "$(git branch --sort=-committerdate --color | fzf --ansi --prompt 'onto ' | xargs)"
+  end
   set branch_root "$(git log -n 500 --pretty=format:'%Cgreen%h%Creset %s' --no-merges | fzf --ansi --prompt 'branch root '| cut -c -7)"
   set branch "$(git rev-parse --abbrev-ref HEAD)"
   git rebase --onto "$new_base" "$branch_root~1" "$branch"
