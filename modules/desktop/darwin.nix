@@ -34,6 +34,9 @@
       cleanup = "zap";
       autoUpdate = true;
     };
+    masApps = {
+      Xcode = 497799835;
+    };
     brews = [
       "coreutils"
     ];
