@@ -1,6 +1,6 @@
 {
   pkgs,
-  adminUser,
+  userName,
   publicKeys,
   ...
 }: {
@@ -12,14 +12,14 @@
   users = {
     mutableUsers = false;
     defaultUserShell = pkgs.fish;
-    users.${adminUser} = {
+    users.${userName} = {
       isNormalUser = true;
       uid = 1000;
       hashedPassword = "$6$1CKpJvvp$abK6WGrXVqnwAxD7/7yXZnmQ57o2m7gfON9fBjVpsmzFeiUCg2a7Xir2fhZJ7qzJP8ppALIKL6cPlrGcZVr530";
-      home = "/home/${adminUser}";
+      home = "/home/${userName}";
       extraGroups = ["wheel" "networkmanager" "audio" "input" "docker"];
       openssh.authorizedKeys.keys = [
-        publicKeys.stravinsky.${adminUser}
+        publicKeys.stravinsky.${userName}
       ];
     };
   };
@@ -34,9 +34,8 @@
     xclip
   ];
   services.fwupd.enable = true;
-  networking.networkmanager.enable = true;
 
-  home-manager.users.${adminUser} = {
+  home-manager.users.${userName} = {
     imports = [
       ../home/shell.nix
     ];

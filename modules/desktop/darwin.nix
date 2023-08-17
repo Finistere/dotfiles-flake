@@ -1,15 +1,15 @@
 {
   pkgs,
-  adminUser,
+  userName,
   ...
 }: {
   imports = [
     ./common.nix
   ];
 
-  users.users.${adminUser}.home = "/Users/${adminUser}";
+  users.users.${userName}.home = "/Users/${userName}";
 
-  home-manager.users.${adminUser} = {
+  home-manager.users.${userName} = {
     imports = [
       ../home/shell.nix
     ];
@@ -60,6 +60,7 @@
       "clion"
       "datagrip"
       "aws-vpn-client"
+      "insomnia"
 
       # People
       "slack"

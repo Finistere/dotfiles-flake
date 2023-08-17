@@ -21,6 +21,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim.url = "github:finistere/neovim-flake";
   };
   outputs = {
     self,
@@ -33,7 +34,7 @@
     flake-utils,
     ...
   } @ inputs: let
-    adminUser = "brabier";
+    userName = "brabier";
     publicKeys = import ./public-keys.nix;
     nixConfig = [
       ({pkgs, ...}: {
@@ -54,7 +55,7 @@
     in {
       darwinConfigurations.${hostName} = darwin.lib.darwinSystem {
         inherit system;
-        specialArgs = {inherit inputs adminUser hostName publicKeys;};
+        specialArgs = {inherit inputs userName hostName publicKeys system;};
         modules =
           nixConfig
           ++ [
@@ -76,7 +77,7 @@
     in {
       nixosConfigurations.${hostName} = nixpkgs-stable.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs adminUser hostName publicKeys;};
+        specialArgs = {inherit inputs userName hostName publicKeys system;};
         modules =
           nixConfig
           ++ [

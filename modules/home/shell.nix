@@ -1,6 +1,8 @@
 {
   pkgs,
   osConfig,
+  inputs,
+  system,
   ...
 }: {
   home = {
@@ -17,6 +19,7 @@
       whois
       tig
       erdtree
+      inputs.neovim.packages.${system}.default
     ];
     file."erdtree" = {
       target = ".config/erdtree/.erdtree.toml";
@@ -87,6 +90,8 @@
       gs = "git status";
       gca = "git commit --amend";
       ll = "exa -lga --group-directories-first";
+      vimdiff = "nvim -d";
+      vi = "nvim";
     };
     shellInit = builtins.readFile ./files/config.fish;
     plugins = [
@@ -156,11 +161,5 @@
     };
 
     ignores = [".envrc" ".ignore" ".direnv"];
-  };
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
   };
 }
