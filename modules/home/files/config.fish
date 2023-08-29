@@ -5,7 +5,7 @@ emit git_install
 
 function gc
   if count $argv >/dev/null
-    git checkout "$argv[1]"
+    git checkout $argv
   else
     git branch --sort=-committerdate --color | fzf --ansi --prompt 'checkout ' | xargs -o git checkout
   end
