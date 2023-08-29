@@ -58,6 +58,7 @@
       "mullvadvpn"
       "roon"
       "joplin" # Notes
+      "Rectangle" # window snapping
 
       # Work
       "notion"
