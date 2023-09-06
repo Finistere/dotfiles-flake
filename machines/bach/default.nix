@@ -140,14 +140,6 @@
   '';
   services.udev.packages = [pkgs.qmk-udev-rules];
 
-  # Enable sound.
-  sound.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
   hardware.bluetooth.enable = true;
   hardware.opengl = {
     enable = true;

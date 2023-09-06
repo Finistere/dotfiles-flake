@@ -63,6 +63,11 @@
           HostName = "192.168.1.17";
         };
       };
+      "bruckner" = {
+        extraOptions = {
+          HostName = "192.168.1.16";
+        };
+      };
       "*compute.amazonaws.com" = {
         extraOptions = {
           User = "ec2-user";

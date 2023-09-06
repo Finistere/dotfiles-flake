@@ -5,7 +5,9 @@
   ...
 }: {
   imports = [
-    ./common.nix
+    ../common.nix
+    ./sound.nix
+    ./kde.nix
   ];
 
   virtualisation.docker.enable = true;
@@ -29,7 +31,6 @@
     htop
     coreutils
     parted
-    ntfs3g
     openssl
     xclip
   ];
@@ -37,7 +38,7 @@
 
   home-manager.users.${userName} = {
     imports = [
-      ../home/shell.nix
+      ../../home/shell.nix
     ];
     home = {
       packages = with pkgs; [google-chrome];
@@ -46,7 +47,7 @@
     programs.kitty = {
       enable = true;
       extraConfig =
-        builtins.readFile ../home/files/kitty.conf
+        builtins.readFile ../../home/files/kitty.conf
         + builtins.readFile (pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf");
     };
     programs.keychain = {

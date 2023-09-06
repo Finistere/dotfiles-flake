@@ -1,17 +1,16 @@
 {
   description = "Benjamin's machines";
   inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
-    home-manager-stable = {
-      url = "github:nix-community/home-manager/release-23.05";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+    nixpkgs-wayland = {
+      url = "github:nix-community/nixpkgs-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -26,30 +25,42 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
     darwin,
     home-manager,
-    home-manager-stable,
     agenix,
     flake-utils,
     ...
   } @ inputs: let
     userName = "brabier";
     publicKeys = import ./public-keys.nix;
-    nixConfig = [
-      ({pkgs, ...}: {
-        nixpkgs = {
-          config.allowUnfree = true;
+    nixConfig = {pkgs, ...}: {
+      nixpkgs = {
+        config.allowUnfree = true;
+      };
+      nix = {
+        package = pkgs.nixFlakes;
+        settings = {
+          auto-optimise-store = true;
+          experimental-features = ["nix-command" "flakes"];
         };
-        nix = {
-          package = pkgs.nixFlakes;
-          settings = {
-            auto-optimise-store = true;
-            experimental-features = ["nix-command" "flakes"];
-          };
-        };
-      })
-    ];
+      };
+    };
+    wayland = _: {
+      nix.settings = {
+        # add binary caches
+        trusted-public-keys = [
+          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+          "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+        ];
+        substituters = [
+          "https://cache.nixos.org"
+          "https://nixpkgs-wayland.cachix.org"
+        ];
+      };
+
+      # use it as an overlay
+      nixpkgs.overlays = [inputs.nixpkgs-wayland.overlay];
+    };
     darwinSystem = hostName: extraModules: let
       system = "aarch64-darwin";
     in {
@@ -57,8 +68,8 @@
         inherit system;
         specialArgs = {inherit inputs userName hostName publicKeys system;};
         modules =
-          nixConfig
-          ++ [
+          [
+            nixConfig
             {
               services.nix-daemon.enable = true;
               age.identityPaths = ["/etc/ssh/host_ed25519"];
@@ -72,17 +83,17 @@
           ++ extraModules;
       };
     };
-    nixosStableSystem = hostName: extraModules: let
+    nixosSystem = hostName: extraModules: let
       system = "x86_64-linux";
     in {
-      nixosConfigurations.${hostName} = nixpkgs-stable.lib.nixosSystem {
+      nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {inherit inputs userName hostName publicKeys system;};
         modules =
-          nixConfig
-          ++ [
+          [
+            nixConfig
             agenix.nixosModules.default
-            home-manager-stable.nixosModule
+            home-manager.nixosModule
             ./machines/${hostName}
           ]
           ++ extraModules;
@@ -94,8 +105,12 @@
       (darwinSystem "stravinsky" [
         ./modules/desktop/darwin.nix
       ])
-      (nixosStableSystem "bach" [
-        ./modules/desktop/nixos.nix
+      (nixosSystem "bach" [
+        ./modules/desktop/nixos
+      ])
+      (nixosSystem "bruckner" [
+        ./modules/desktop/nixos
+        wayland
       ])
     ])
     # Shells
