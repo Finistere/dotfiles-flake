@@ -12,6 +12,8 @@
     ./hardware-configuration.nix
   ];
 
+  environment.systemPackages = with pkgs; [lm_sensors];
+
   # Use the systemd-boot EFI boot loader.
   services.openssh.enable = true;
   time.timeZone = "Europe/Paris";

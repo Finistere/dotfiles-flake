@@ -25,12 +25,6 @@
           device = "/dev/disk/by-uuid/521e7e2e-526e-4923-939d-55464c260311";
           allowDiscards = true;
         };
-        cryptroot1 = {
-          device = "/dev/disk/by-uuid/63c393d9-e909-44da-939a-04585943b7ee";
-          preLVM = true;
-          allowDiscards = true;
-          keyFile = "/etc/secrets/initrd/cryptroot1.keyfile";
-        };
       };
     };
     loader = {
@@ -43,6 +37,7 @@
   };
 
   hardware.cpu.amd.updateMicrocode = true;
+  powerManagement.cpuFreqGovernor = "performance";
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/2b621b31-d58c-4299-91f5-94c3bc7c6ed5";
@@ -52,6 +47,13 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/5508-3AD3";
     fsType = "vfat";
+  };
+
+  environment.etc.crypttab = {
+    enable = true;
+    text = ''
+      cryptroot1 UUID=63c393d9-e909-44da-939a-04585943b7ee /etc/secrets/initrd/cryptroot1.keyfile luks discard
+    '';
   };
 
   fileSystems."/data" = {
