@@ -4,6 +4,10 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    flake-programs-sqlite = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,12 +37,13 @@
   } @ inputs: let
     userName = "brabier";
     publicKeys = import ./public-keys.nix;
-    nixConfig = {pkgs, ...}: {
+    nixConfig = _: {
       nixpkgs = {
         config.allowUnfree = true;
       };
       nix = {
-        package = pkgs.nixFlakes;
+        registry.nixpkgs.flake = inputs.nixpkgs;
+        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
         settings = {
           auto-optimise-store = true;
           experimental-features = ["nix-command" "flakes"];
@@ -92,6 +97,7 @@
         modules =
           [
             nixConfig
+            inputs.flake-programs-sqlite.nixosModules.programs-sqlite
             agenix.nixosModules.default
             home-manager.nixosModule
             ./machines/${hostName}

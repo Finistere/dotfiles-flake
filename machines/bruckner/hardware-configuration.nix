@@ -12,27 +12,52 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = ["dm-snapshot"];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = ["kvm-amd" "amd-pstate"];
+    extraModulePackages = [];
+
+    initrd = {
+      availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+      kernelModules = ["dm-snapshot"];
+      luks.devices = {
+        cryptroot0 = {
+          device = "/dev/disk/by-uuid/521e7e2e-526e-4923-939d-55464c260311";
+          allowDiscards = true;
+        };
+        cryptroot1 = {
+          device = "/dev/disk/by-uuid/63c393d9-e909-44da-939a-04585943b7ee";
+          preLVM = true;
+          allowDiscards = true;
+          keyFile = "/etc/secrets/initrd/cryptroot1.keyfile";
+        };
+      };
+    };
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+  };
+
+  hardware.cpu.amd.updateMicrocode = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/2b621b31-d58c-4299-91f5-94c3bc7c6ed5";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."cryptroot0".device = "/dev/disk/by-uuid/521e7e2e-526e-4923-939d-55464c260311";
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/5508-3AD3";
     fsType = "vfat";
   };
 
-  #  fileSystems."/data" =
-  #    { device = "/dev/disk/by-uuid/fdbabf52-370a-465c-9b7b-4da84d4143f0";
-  #      fsType = "ext4";
-  #    };
+  fileSystems."/data" = {
+    device = "/dev/vg-data/data";
+    fsType = "ext4";
+  };
 
   swapDevices = [];
 
@@ -46,5 +71,4 @@
   # networking.interfaces.wlp9s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
