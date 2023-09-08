@@ -33,6 +33,7 @@
     parted
     openssl
     xclip
+    lm_sensors
   ];
   services.fwupd.enable = true;
 

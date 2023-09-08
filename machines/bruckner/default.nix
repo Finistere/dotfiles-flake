@@ -11,10 +11,17 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-
-  environment.systemPackages = with pkgs; [lm_sensors];
-
-  # Use the systemd-boot EFI boot loader.
-  services.openssh.enable = true;
   time.timeZone = "Europe/Paris";
+
+  environment.systemPackages = with pkgs; [];
+
+  services.openssh.enable = true;
+
+  programs.steam = {
+    enable = true;
+    # Open ports in the firewall for Steam Remote Play
+    remotePlay.openFirewall = true;
+    # Open ports in the firewall for Source Dedicated Server
+    dedicatedServer.openFirewall = true;
+  };
 }

@@ -14,7 +14,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = ["kvm-amd" "amd-pstate"];
+    kernelModules = ["kvm-amd" "amd-pstate" "amdgpu"];
     kernelParams = [
       "amd_pstate=guided"
     ];
@@ -41,6 +41,21 @@
 
   hardware.cpu.amd.updateMicrocode = true;
   # powerManagement.cpuFreqGovernor = "schedutil";
+
+  services.xserver.videoDrivers = ["amdgpu"];
+  hardware.opengl = {
+    enable = true;
+    driSuppot = true;
+    extraPackages = with pkgs; [
+      # OpenCL
+      rocm-opencl-icd
+      # Vulkan
+      amdvlk
+      # VA-API
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/2b621b31-d58c-4299-91f5-94c3bc7c6ed5";
