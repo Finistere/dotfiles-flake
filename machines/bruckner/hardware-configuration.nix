@@ -45,7 +45,8 @@
   services.xserver.videoDrivers = ["amdgpu"];
   hardware.opengl = {
     enable = true;
-    driSuppot = true;
+    # Vulkan
+    driSupport = true;
     extraPackages = with pkgs; [
       # OpenCL
       rocm-opencl-icd
