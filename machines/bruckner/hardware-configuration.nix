@@ -15,6 +15,9 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["kvm-amd" "amd-pstate"];
+    kernelParams = [
+      "amd_pstate=guided"
+    ];
     extraModulePackages = [];
 
     initrd = {
@@ -37,7 +40,7 @@
   };
 
   hardware.cpu.amd.updateMicrocode = true;
-  powerManagement.cpuFreqGovernor = "performance";
+  # powerManagement.cpuFreqGovernor = "schedutil";
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/2b621b31-d58c-4299-91f5-94c3bc7c6ed5";
