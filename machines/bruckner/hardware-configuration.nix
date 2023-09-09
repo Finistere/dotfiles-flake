@@ -68,17 +68,18 @@
     fsType = "vfat";
   };
 
-  environment.etc.crypttab = {
-    enable = true;
-    text = ''
-      cryptroot1 UUID=63c393d9-e909-44da-939a-04585943b7ee /etc/secrets/initrd/cryptroot1.keyfile luks discard
-    '';
-  };
-
-  fileSystems."/data" = {
-    device = "/dev/vg-data/data";
-    fsType = "ext4";
-  };
+  # Installing Windows in there for now.
+  # environment.etc.crypttab = {
+  #   enable = true;
+  #   text = ''
+  #     cryptroot1 UUID=63c393d9-e909-44da-939a-04585943b7ee /etc/secrets/initrd/cryptroot1.keyfile luks discard
+  #   '';
+  # };
+  #
+  # fileSystems."/data" = {
+  #   device = "/dev/vg-data/data";
+  #   fsType = "ext4";
+  # };
 
   swapDevices = [];
 
