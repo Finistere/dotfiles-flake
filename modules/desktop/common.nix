@@ -39,5 +39,11 @@
       inherit inputs me;
       inherit (me) system;
     };
+    users.${me.userName} = {
+      imports = [
+        ../home/apps.nix
+        ../home/shell.nix
+      ];
+    };
   };
 }

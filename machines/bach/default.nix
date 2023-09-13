@@ -2,6 +2,7 @@
   pkgs,
   config,
   inputs,
+  me,
   ...
 }: {
   system.stateVersion = "20.09";

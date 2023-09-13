@@ -10,11 +10,7 @@
   users.users.${me.userName}.home = "/Users/${me.userName}";
 
   home-manager.users.${me.userName} = {
-    imports = [
-      ../home/shell.nix
-    ];
     home = {
-      packages = with pkgs; [];
       file."kitty" = {
         target = ".config/kitty/kitty.conf";
         text =

@@ -47,9 +47,6 @@
   services.fwupd.enable = true;
 
   home-manager.users.${me.userName} = {
-    imports = [
-      ../../home/shell.nix
-    ];
     home = {
       packages = with pkgs; [google-chrome];
     };
