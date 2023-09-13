@@ -18,7 +18,17 @@
       uid = 1000;
       hashedPassword = "$6$1CKpJvvp$abK6WGrXVqnwAxD7/7yXZnmQ57o2m7gfON9fBjVpsmzFeiUCg2a7Xir2fhZJ7qzJP8ppALIKL6cPlrGcZVr530";
       home = "/home/${me.userName}";
-      extraGroups = ["wheel" "networkmanager" "audio" "input" "docker"];
+      extraGroups = [
+        # sudo
+        "wheel"
+        "networkmanager"
+        "audio"
+        "input"
+        "docker"
+        # for qmk flash
+        "tty"
+        "dialout"
+      ];
       openssh.authorizedKeys.keys = [
         me.publicKeys.stravinsky.${me.userName}
       ];
