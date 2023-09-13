@@ -36,9 +36,7 @@
     ...
   } @ inputs: let
     nixConfig = _: {
-      nixpkgs = {
-        config.allowUnfree = true;
-      };
+      nixpkgs.config.allowUnfree = true;
       nix = {
         registry.nixpkgs.flake = inputs.nixpkgs;
         nixPath = ["nixpkgs=${inputs.nixpkgs}"];
