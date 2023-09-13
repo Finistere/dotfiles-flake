@@ -62,7 +62,6 @@
       "around"
       "linear-linear"
       "intellij-idea"
-      "clion"
       "datagrip"
       "aws-vpn-client"
       "insomnia"
