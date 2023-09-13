@@ -1,15 +1,15 @@
 {
   pkgs,
-  userName,
+  me,
   ...
 }: {
   imports = [
     ./common.nix
   ];
 
-  users.users.${userName}.home = "/Users/${userName}";
+  users.users.${me.userName}.home = "/Users/${me.userName}";
 
-  home-manager.users.${userName} = {
+  home-manager.users.${me.userName} = {
     imports = [
       ../home/shell.nix
     ];
@@ -58,6 +58,7 @@
       "mullvadvpn"
       "roon"
       "joplin" # Notes
+      "obsidian" # Notes
       "Rectangle" # window snapping
 
       # Work
@@ -69,6 +70,7 @@
       "datagrip"
       "aws-vpn-client"
       "insomnia"
+      "docker"
 
       # People
       "slack"

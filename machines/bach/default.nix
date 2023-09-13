@@ -1,12 +1,11 @@
 {
   pkgs,
-  userName,
   config,
   inputs,
   ...
 }: {
   system.stateVersion = "20.09";
-  home-manager.users.${userName}.home.stateVersion = "21.11";
+  home-manager.users.${me.userName}.home.stateVersion = "21.11";
 
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1

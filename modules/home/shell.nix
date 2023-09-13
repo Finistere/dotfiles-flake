@@ -27,7 +27,7 @@
     };
   };
 
-  programs.exa.enable = true;
+  programs.eza.enable = true;
   programs.skim.enable = true;
 
   programs.atuin = {
@@ -88,13 +88,14 @@
       nix_shell.disabled = true;
     };
   };
+  programs.bash.enable = true;
   programs.fish = {
     enable = true;
     shellAliases = {
       s = "kitty +kitten ssh";
       gs = "git status";
       gca = "git commit --amend";
-      ll = "exa -lga --group-directories-first";
+      ll = "eza -lga --group-directories-first";
       vimdiff = "nvim -d";
       vi = "nvim";
     };

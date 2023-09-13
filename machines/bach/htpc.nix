@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  userName,
+  me,
   ...
 }: let
   htpcUser = "bach";
@@ -21,6 +21,6 @@ in {
   home-manager.users.${htpcUser} = {
     home.stateVersion = "22.11";
     programs.firefox.enable = true;
-    programs.kitty = config.home-manager.users.${userName}.programs.kitty;
+    programs.kitty = config.home-manager.users.${me.userName}.programs.kitty;
   };
 }

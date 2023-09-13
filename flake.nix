@@ -35,8 +35,6 @@
     flake-utils,
     ...
   } @ inputs: let
-    userName = "brabier";
-    publicKeys = import ./public-keys.nix;
     nixConfig = _: {
       nixpkgs = {
         config.allowUnfree = true;
@@ -66,12 +64,24 @@
       # use it as an overlay
       nixpkgs.overlays = [inputs.nixpkgs-wayland.overlay];
     };
+    mkMe = hostName: system: {
+      inherit hostName system;
+      userName = "brabier";
+      publicKeys = import ./public-keys.nix;
+      lib = {
+        matchOs = cases:
+          if null == builtins.match ''^.*-darwin$'' system
+          then cases.linux
+          else cases.darwin;
+      };
+    };
     darwinSystem = hostName: extraModules: let
       system = "aarch64-darwin";
+      me = mkMe hostName system;
     in {
       darwinConfigurations.${hostName} = darwin.lib.darwinSystem {
         inherit system;
-        specialArgs = {inherit inputs userName hostName publicKeys system;};
+        specialArgs = {inherit inputs me;};
         modules =
           [
             nixConfig
@@ -90,10 +100,11 @@
     };
     nixosSystem = hostName: extraModules: let
       system = "x86_64-linux";
+      me = mkMe hostName system;
     in {
       nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs userName hostName publicKeys system;};
+        specialArgs = {inherit inputs me;};
         modules =
           [
             nixConfig
