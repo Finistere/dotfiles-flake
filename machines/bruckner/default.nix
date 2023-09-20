@@ -10,6 +10,8 @@
     ./hardware-configuration.nix
   ];
   time.timeZone = "Europe/Paris";
+  # For Windows
+  time.hardwareClockInLocalTime = true;
 
   environment.systemPackages = with pkgs; [discord];
 
