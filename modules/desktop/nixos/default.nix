@@ -43,6 +43,7 @@
     openssl
     xclip
     lm_sensors
+    slack
   ];
   services.fwupd.enable = true;
 
