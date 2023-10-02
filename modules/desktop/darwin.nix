@@ -10,14 +10,6 @@
   users.users.${me.userName}.home = "/Users/${me.userName}";
 
   home-manager.users.${me.userName} = {
-    home = {
-      file."kitty" = {
-        target = ".config/kitty/kitty.conf";
-        text =
-          builtins.readFile ../home/files/kitty.conf
-          + builtins.readFile (pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf");
-      };
-    };
     programs.ssh.matchBlocks."*".extraOptions = {
       AddKeysToAgent = "yes";
       UseKeychain = "yes";
@@ -48,7 +40,6 @@
       "firefox"
       "keepassxc"
       "raycast" # Better Spotlight, it detects apps installed by nix-darwin
-      "kitty" # Terminal emulator
       "lunar" # Luminosity control
       "doll" # Slack notification
       "mullvadvpn"

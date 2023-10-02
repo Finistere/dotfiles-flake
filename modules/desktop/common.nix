@@ -42,7 +42,9 @@
     users.${me.userName} = {
       imports = [
         ../home/apps.nix
-        ../home/shell.nix
+        ../home/terminal
+        ../home/terminal/git.nix
+        ../home/terminal/editor.nix
       ];
     };
   };

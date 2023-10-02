@@ -52,12 +52,6 @@
       packages = with pkgs; [google-chrome];
     };
     programs.firefox.enable = true;
-    programs.kitty = {
-      enable = true;
-      extraConfig =
-        builtins.readFile ../../home/files/kitty.conf
-        + builtins.readFile (pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf");
-    };
     programs.keychain = {
       enable = true;
       keys = ["id_ed25519"];
