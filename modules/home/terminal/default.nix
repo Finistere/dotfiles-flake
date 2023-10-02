@@ -1,6 +1,7 @@
 {
   pkgs,
-  osConfig,
+  me,
+  inputs,
   ...
 }: {
   home = {
@@ -112,10 +113,13 @@
     bat = {
       enable = true;
       config = {
-        theme = "tokyonight";
+        inherit (me) theme;
       };
       themes = {
-        tokyonight = builtins.readFile (pkgs.vimPlugins.tokyonight-nvim + "/extras/sublime/tokyonight_moon.tmTheme");
+        tokyonight_moon = builtins.readFile (inputs.tokyonight-nvim + "/extras/sublime/tokyonight_moon.tmTheme");
+        catppuccin_mocha = builtins.readFile (inputs.catppuccin-bat + "/Catppuccin-mocha.tmTheme");
+        catppuccin_frappe = builtins.readFile (inputs.catppuccin-bat + "/Catppuccin-frappe.tmTheme");
+        catppuccin_macchiato = builtins.readFile (inputs.catppuccin-bat + "/Catppuccin-macchiato.tmTheme");
       };
     };
   };

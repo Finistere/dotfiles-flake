@@ -30,6 +30,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    tokyonight-nvim = {
+      url = "github:finistere/tokyonight.nvim";
+      flake = false;
+    };
+    catppuccin-bat = {
+      url = "github:catppuccin/bat";
+      flake = false;
+    };
+    catppuccin-helix = {
+      url = "github:catppuccin/helix";
+      flake = false;
+    };
+    catppuccin-kitty = {
+      url = "github:catppuccin/kitty";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -71,6 +87,7 @@
       inherit hostName system;
       userName = "brabier";
       publicKeys = import ./public-keys.nix;
+      theme = "tokyonight_moon";
       lib = {
         matchOs = cases:
           if null == builtins.match ''^.*-darwin$'' system
