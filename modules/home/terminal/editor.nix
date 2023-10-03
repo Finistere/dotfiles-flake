@@ -6,10 +6,10 @@
   ...
 }: {
   home = {
-    # sessionVariables = {
-    #   EDITOR = "vi";
-    #   VISUAL = "vi";
-    # };
+    sessionVariables = {
+      EDITOR = "vi";
+      VISUAL = "vi";
+    };
     packages = with pkgs; [
       inputs.neovim.packages.${system}.default
     ];
@@ -26,7 +26,6 @@
   programs = {
     helix = {
       enable = true;
-      defaultEditor = true;
       package = let
         extraPackages = with pkgs; [
           rust-analyzer-unwrapped

@@ -13,6 +13,7 @@
       dig
       whois
       erdtree
+      sd
     ];
     file."erdtree" = {
       target = ".config/erdtree/.erdtree.toml";
