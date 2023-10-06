@@ -3,7 +3,8 @@
   inputs,
   me,
   ...
-}: {
+}:
+{
   networking = {inherit (me) hostName;};
   environment.shells = [pkgs.fish];
   environment.variables.SHELL = "${pkgs.fish}/bin/fish";
@@ -41,11 +42,34 @@
     };
     users.${me.userName} = {
       imports = [
-        ../home/apps.nix
         ../home/terminal
         ../home/terminal/git.nix
         ../home/terminal/editor.nix
       ];
+      home = {
+        packages = with pkgs;
+          [
+            jetbrains.clion
+          ]
+          ++ me.lib.ifLinux (with pkgs; [cryptomator]);
+      };
+
+      programs.kitty = let
+        themes = {
+          tokyonight_moon = builtins.readFile (inputs.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf");
+          catpuccin_frappe = builtins.readFile (inputs.catppuccin-kitty + "/themes/frappe.conf");
+          catpuccin_mocha = builtins.readFile (inputs.catppuccin-kitty + "/themes/mocha.conf");
+          catpuccin_macchiato = builtins.readFile (inputs.catppuccin-kitty + "/themes/macchiato.conf");
+        };
+      in {
+        enable = true;
+        extraConfig =
+          builtins.readFile ../home/kitty.conf
+          + themes.${me.theme};
+      };
     };
   };
+}
+// me.lib.ifDarwinAttrs {
+  homebrew.casks = ["cryptomator"];
 }

@@ -37,6 +37,7 @@
     ];
     casks = [
       "google-chrome"
+      "google-drive"
       "firefox"
       "keepassxc"
       "raycast" # Better Spotlight, it detects apps installed by nix-darwin

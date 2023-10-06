@@ -88,11 +88,31 @@
       userName = "brabier";
       publicKeys = import ./public-keys.nix;
       theme = "tokyonight_moon";
-      lib = {
+      lib = rec {
         matchOs = cases:
           if null == builtins.match ''^.*-darwin$'' system
           then cases.linux
           else cases.darwin;
+        ifLinux = list:
+          matchOs {
+            linux = list;
+            darwin = [];
+          };
+        ifDarwin = list:
+          matchOs {
+            linux = [];
+            darwin = list;
+          };
+        ifLinuxAttrs = attrs:
+          matchOs {
+            linux = attrs;
+            darwin = {};
+          };
+        ifDarwinAttrs = attrs:
+          matchOs {
+            linux = {};
+            darwin = attrs;
+          };
       };
     };
     darwinSystem = hostName: extraModules: let
