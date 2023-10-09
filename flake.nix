@@ -87,7 +87,7 @@
       inherit hostName system;
       userName = "brabier";
       publicKeys = import ./public-keys.nix;
-      theme = "catppuccin_macchiato";
+      theme = "tokyonight_moon";
       lib = rec {
         matchOs = cases:
           if null == builtins.match ''^.*-darwin$'' system

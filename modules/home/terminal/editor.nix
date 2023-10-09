@@ -84,7 +84,10 @@
         };
       };
       languages = {
-        language-server.rust-analyzer.config.check.command = "clippy";
+        language-server.rust-analyzer = {
+          command = pkgs.rust-analyzer-unwrapped + /bin/rust-analyzer;
+          config.check.command = "clippy";
+        };
         language = [
           {
             name = "nix";
