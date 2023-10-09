@@ -57,9 +57,9 @@
       programs.kitty = let
         themes = {
           tokyonight_moon = builtins.readFile (inputs.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf");
-          catpuccin_frappe = builtins.readFile (inputs.catppuccin-kitty + "/themes/frappe.conf");
-          catpuccin_mocha = builtins.readFile (inputs.catppuccin-kitty + "/themes/mocha.conf");
-          catpuccin_macchiato = builtins.readFile (inputs.catppuccin-kitty + "/themes/macchiato.conf");
+          catppuccin_frappe = builtins.readFile (inputs.catppuccin-kitty + "/themes/frappe.conf");
+          catppuccin_mocha = builtins.readFile (inputs.catppuccin-kitty + "/themes/mocha.conf");
+          catppuccin_macchiato = builtins.readFile (inputs.catppuccin-kitty + "/themes/macchiato.conf");
         };
       in {
         enable = true;
