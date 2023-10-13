@@ -1,6 +1,7 @@
 {
   bruckner = {
     system = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEM3ryWJOh1yMdRoY3M5wc7++aFVSuO5+8QIci7LBjru";
+    brabier = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKTHzekzdr2s8kK3QUApnWXLrbwF9ZA7o5zyJKN2p3zJ";
   };
   bach = {
     # /etc/ssh/ssh_host_ed25519_key.pub

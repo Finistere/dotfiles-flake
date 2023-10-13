@@ -1,6 +1,5 @@
 {
   pkgs,
-  osConfig,
   ...
 }: {
   home = {
@@ -18,9 +17,6 @@
     gh.enable = true;
     git = {
       enable = true;
-      includes = [
-        {inherit (osConfig.age.secrets.git) path;}
-      ];
       delta = {
         enable = true;
         options = {
@@ -29,6 +25,8 @@
       };
 
       extraConfig = {
+        user.name = "Benjamin Rabier";
+        user.email = "benjamin+git@rabier.dev";
         push.default = "simple";
         pull.ff = "only";
         rebase.autosquash = true;
@@ -37,6 +35,14 @@
       };
 
       ignores = [".envrc" ".ignore" ".direnv"];
+    };
+
+    jujutsu = {
+      enable = true;
+      settings = {
+        user.name = "Benjamin Rabier";
+        user.email = "benjamin+git@rabier.dev";
+      };
     };
   };
 }

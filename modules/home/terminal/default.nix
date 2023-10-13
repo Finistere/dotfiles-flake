@@ -115,6 +115,7 @@
       enable = true;
       config = {
         inherit (me) theme;
+        style = "plain";
       };
       themes = {
         tokyonight_moon = builtins.readFile (inputs.tokyonight-nvim + "/extras/sublime/tokyonight_moon.tmTheme");

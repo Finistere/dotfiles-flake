@@ -28,11 +28,6 @@
       };
     };
 
-  age.secrets.git = {
-    file = ../../secrets/git.age;
-    owner = me.userName;
-  };
-
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
