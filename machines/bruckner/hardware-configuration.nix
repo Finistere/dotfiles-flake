@@ -23,7 +23,7 @@
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
       kernelModules = ["dm-snapshot"];
       luks.devices = {
-        cryptroot0 = {
+        cryptroot = {
           device = "/dev/disk/by-uuid/521e7e2e-526e-4923-939d-55464c260311";
           allowDiscards = true;
         };
@@ -58,7 +58,7 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/2b621b31-d58c-4299-91f5-94c3bc7c6ed5";
+    device = "/dev/mapper/cryptroot";
     fsType = "ext4";
   };
 
