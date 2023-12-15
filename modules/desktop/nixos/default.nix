@@ -44,6 +44,7 @@
     xclip
     lm_sensors
     slack
+    docker-compose
   ];
   services.fwupd.enable = true;
   security.sudo.extraConfig = ''
