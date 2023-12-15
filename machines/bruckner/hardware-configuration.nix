@@ -24,7 +24,7 @@
       kernelModules = ["dm-snapshot"];
       luks.devices = {
         cryptroot = {
-          device = "/dev/disk/by-uuid/521e7e2e-526e-4923-939d-55464c260311";
+          device = "/dev/disk/by-partuuid/704d5070-c046-4049-b6f3-cd8c6e56cecf";
           allowDiscards = true;
         };
       };

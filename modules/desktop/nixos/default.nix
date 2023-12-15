@@ -46,6 +46,9 @@
     slack
   ];
   services.fwupd.enable = true;
+  security.sudo.extraConfig = ''
+    Defaults        lecture = never
+  '';
 
   home-manager.users.${me.userName} = {
     home = {

@@ -14,7 +14,10 @@
       gca = "git commit --amend";
     };
 
-    gh.enable = true;
+    gh = {
+      enable = true;
+      settings.verison = 1;
+    };
     git = {
       enable = true;
       delta = {
