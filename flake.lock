@@ -70,6 +70,27 @@
         "type": "github"
       }
     },
+    "crane": {
+      "inputs": {
+        "nixpkgs": [
+          "helix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1701025348,
+        "narHash": "sha256-42GHmYH+GF7VjwGSt+fVT1CQuNpGanJbNgVHTAZppUM=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "42afaeb1a0325194a7cdb526332d2cb92fddd07b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -157,11 +178,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1702455368,
-        "narHash": "sha256-YCDBRkzTpkLFIhNkbndyWVQAEAxfaFkncOjq3jvIOpg=",
+        "lastModified": 1702650353,
+        "narHash": "sha256-Wzl/OPu9pkeI5Q+4bkQw2srdOeOUT8JBrj2/PkmSZZ0=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "5e328306b64d60d257761be59f7d233837869401",
+        "rev": "ecb3341e24a5332bac9ab0a28fb447a758fb1211",
         "type": "github"
       },
       "original": {
@@ -224,6 +245,31 @@
         "type": "github"
       }
     },
+    "helix": {
+      "inputs": {
+        "crane": "crane",
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1702623594,
+        "narHash": "sha256-O9lN0ohzxq+q0pZrn9KkAaKfLFqoSbwfDFVZRJnn4O8=",
+        "owner": "helix-editor",
+        "repo": "helix",
+        "rev": "33d85606cf36da074d91db498d12233ab4978509",
+        "type": "github"
+      },
+      "original": {
+        "owner": "helix-editor",
+        "repo": "helix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -252,11 +298,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1702423270,
-        "narHash": "sha256-3ZA5E+b2XBP+c9qGhWpRApzPq/PZtIPgkeEDpTBV4g8=",
+        "lastModified": 1702538064,
+        "narHash": "sha256-At5GwJPu2tzvS9dllhBoZmqK6lkkh/sOp2YefWRlaL8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d9297efd3a1c3ebb9027dc68f9da0ac002ae94db",
+        "rev": "0e2e443ff24f9d75925e91b89d1da44b863734af",
         "type": "github"
       },
       "original": {
@@ -309,11 +355,11 @@
         "ranger": "ranger"
       },
       "locked": {
-        "lastModified": 1702482576,
-        "narHash": "sha256-cA7AYqJ1WCIHu+GUZzLWXEOaVvrSPmrHfyltlZc+U7c=",
+        "lastModified": 1702485578,
+        "narHash": "sha256-95XMCUBojC7lAykr0OiG6M2b6R7gtZSyPoE3ZxQG0eY=",
         "owner": "finistere",
         "repo": "neovim-flake",
-        "rev": "8eb71f8e65af3d84110d18dc8d484607393e6d23",
+        "rev": "a7969d639d45915636fbd81e589cae2dc8d7ad18",
         "type": "github"
       },
       "original": {
@@ -421,11 +467,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1702473575,
-        "narHash": "sha256-Cm1eTga28wtBSKq0Fx3zy/DX3HI7SCfwyt4vdCysH8E=",
+        "lastModified": 1702649675,
+        "narHash": "sha256-sSGEuGpPnXhHWtR8e9XOlKm/OPy2ocfr2vaPDk1n0x4=",
         "owner": "nix-community",
         "repo": "nixpkgs-wayland",
-        "rev": "82ff9cdbc9febc067caea89e30c3f2c1c5e7502e",
+        "rev": "8248ceefd6f2802d763aa9fc1b8682976ec8cc92",
         "type": "github"
       },
       "original": {
@@ -468,11 +514,11 @@
     "nvim-rainbow-delimiter": {
       "flake": false,
       "locked": {
-        "lastModified": 1702419735,
-        "narHash": "sha256-BFfx2nn2AifFbI4fLQC8u5JK3ohBm0fFwp9JLyPpjpw=",
+        "lastModified": 1702483641,
+        "narHash": "sha256-LV/kFqq0e4/208cN6B2R+ECvpGG4MUsfPIZsk/up53c=",
         "ref": "refs/heads/master",
-        "rev": "cc1783ca5f1f9bfed18bfc051bb88e0e4faaf17a",
-        "revCount": 715,
+        "rev": "0b4c1ab6724062f3582746c6a5a8c0636bf7ed81",
+        "revCount": 716,
         "type": "git",
         "url": "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git"
       },
@@ -506,12 +552,38 @@
         "darwin": "darwin_2",
         "flake-programs-sqlite": "flake-programs-sqlite",
         "flake-utils": "flake-utils",
+        "helix": "helix",
         "home-manager": "home-manager_2",
         "neovim": "neovim",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "tokyonight-nvim": "tokyonight-nvim"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "flake-utils": [
+          "helix",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "helix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1701137803,
+        "narHash": "sha256-0LcPAdql5IhQSUXJx3Zna0dYTgdIoYO7zUrsKgiBd04=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "9dd940c967502f844eacea52a61e9596268d4f70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "systems": {
