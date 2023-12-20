@@ -16,7 +16,8 @@
 
     gh = {
       enable = true;
-      settings.verison = 1;
+      # Workaround for https://github.com/nix-community/home-manager/issues/4744
+      settings.version = 1;
     };
     git = {
       enable = true;
