@@ -58,6 +58,7 @@
       "aws-vpn-client"
       "insomnia"
       "docker"
+      "microsoft-teams"
 
       # People
       "slack"
