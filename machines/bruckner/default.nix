@@ -17,5 +17,6 @@
     hardwareClockInLocalTime = true;
   };
 
+  boot.tmp.useTmpfs = true;
   services.openssh.enable = true;
 }
