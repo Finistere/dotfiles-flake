@@ -167,6 +167,8 @@
       ])
       (nixosSystem "bruckner" [
         ./modules/desktop/nixos
+        ./modules/desktop/nixos/dev.nix
+        ./modules/desktop/nixos/gaming.nix
         wayland
       ])
     ])

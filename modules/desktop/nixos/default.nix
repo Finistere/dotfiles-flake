@@ -46,7 +46,6 @@
     lm_sensors
     slack
     docker-compose
-    config.boot.kernelPackages.perf
   ];
   services.fwupd.enable = true;
   security.sudo.extraConfig = ''
