@@ -34,6 +34,7 @@
     };
     brews = [
       "coreutils"
+      "gnu-sed" # for neovim plugin
     ];
     casks = [
       "google-chrome"
@@ -71,6 +72,7 @@
       # Apps
       "adobe-creative-cloud"
       "steam"
+      "rustdesk"
     ];
   };
 }
