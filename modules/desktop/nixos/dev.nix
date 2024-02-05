@@ -9,12 +9,13 @@
     "kernel.kptr_restrict" = 0;
   };
   environment.systemPackages = with pkgs; [
-    config.boot.kernelPackages.perf
+    # https://github.com/NixOS/nixpkgs/issues/282983
+    (linuxKernel.packagesFor (linuxKernel.kernels.linux_6_7.override {stdenv = gcc12Stdenv; buildPackages = pkgs.buildPackages // { stdenv = gcc12Stdenv;};})).perf
+    # config.boot.kernelPackages.perf
     kcachegrind
     valgrind
     graphviz
     virt-manager # kvm
-    rustdesk-server
   ];
 
   # KVM
