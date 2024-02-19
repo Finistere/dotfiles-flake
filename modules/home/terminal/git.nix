@@ -31,11 +31,17 @@
       extraConfig = {
         user.name = "Benjamin Rabier";
         user.email = "benjamin+git@rabier.dev";
-        push.default = "simple";
+        push.default = "current";
         pull.ff = "only";
+        merge.conflictstyle = "zdiff3";
         rebase.autosquash = true;
+        rebase.autostash = true;
         alias.fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup";
         init.defaultBranch = "main";
+        rerere.enabled = true;
+        diff.algorithm = "histogram";
+        feth.prune = true;
+        fetch.pruneTags = true;
       };
 
       ignores = [".envrc" ".ignore" ".direnv"];
