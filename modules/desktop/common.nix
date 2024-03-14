@@ -45,6 +45,7 @@
         packages = with pkgs;
           [
             jetbrains.clion
+            bashInteractive
           ]
           ++ me.lib.ifLinux (with pkgs; [cryptomator]);
       };
