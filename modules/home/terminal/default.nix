@@ -52,7 +52,7 @@
           extraOptions = {
             User = "ec2-user";
             SetEnv = "TERM=vt100";
-            IdentityFile = "~/.ssh/id_25519.pem";
+            IdentityFile = "~/.ssh/id_ed25519.pem";
           };
         };
       };
