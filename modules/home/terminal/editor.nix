@@ -18,18 +18,6 @@
         target = ".config/helix/themes/tokyonight_moon.toml";
         text = builtins.readFile (inputs.tokyonight-nvim + "/extras/helix/tokyonight_moon.toml");
       };
-      "helix-catppuccin-mocha" = {
-        target = ".config/helix/themes/catppuccin_mocha.toml";
-        text = builtins.readFile (inputs.catppuccin-helix + "/themes/default/catppuccin_mocha.toml");
-      };
-      "helix-catppuccin-macchiato" = {
-        target = ".config/helix/themes/catppuccin_macchiato.toml";
-        text = builtins.readFile (inputs.catppuccin-helix + "/themes/default/catppuccin_macchiato.toml");
-      };
-      "helix-catppuccin-frappe" = {
-        target = ".config/helix/themes/catppuccin_frappe.toml";
-        text = builtins.readFile (inputs.catppuccin-helix + "/themes/default/catppuccin_frappe.toml");
-      };
     };
   };
 

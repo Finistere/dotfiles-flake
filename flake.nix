@@ -34,18 +34,6 @@
       url = "github:finistere/tokyonight.nvim";
       flake = false;
     };
-    catppuccin-bat = {
-      url = "github:catppuccin/bat";
-      flake = false;
-    };
-    catppuccin-helix = {
-      url = "github:catppuccin/helix";
-      flake = false;
-    };
-    catppuccin-kitty = {
-      url = "github:catppuccin/kitty";
-      flake = false;
-    };
   };
   outputs = {
     self,

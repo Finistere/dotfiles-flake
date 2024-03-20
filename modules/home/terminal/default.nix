@@ -120,9 +120,6 @@
       };
       themes = {
         tokyonight_moon = builtins.readFile (inputs.tokyonight-nvim + "/extras/sublime/tokyonight_moon.tmTheme");
-        catppuccin_mocha = builtins.readFile (inputs.catppuccin-bat + "/Catppuccin-mocha.tmTheme");
-        catppuccin_frappe = builtins.readFile (inputs.catppuccin-bat + "/Catppuccin-frappe.tmTheme");
-        catppuccin_macchiato = builtins.readFile (inputs.catppuccin-bat + "/Catppuccin-macchiato.tmTheme");
       };
     };
   };
