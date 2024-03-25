@@ -21,8 +21,11 @@
     };
     git = {
       enable = true;
-      delta = {
+      difftastic = {
         enable = true;
+      };
+      delta = {
+        enable = false;
         options = {
           features = "decorations navigate";
         };
