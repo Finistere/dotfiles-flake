@@ -10,6 +10,11 @@
   users.users.${me.userName}.home = "/Users/${me.userName}";
 
   home-manager.users.${me.userName} = {
+    home = {
+      packages = with pkgs; [
+        colima
+      ];
+    };
     programs.ssh.matchBlocks."*".extraOptions = {
       AddKeysToAgent = "yes";
       UseKeychain = "yes";
