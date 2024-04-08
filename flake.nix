@@ -140,9 +140,25 @@
           ++ extraModules;
       };
     };
+    # https://stackoverflow.com/questions/54504685/nix-function-to-merge-attributes-records-recursively-and-concatenate-arrays
+    recursiveMerge = attrList:
+      with nixpkgs.lib; let
+        f = attrPath:
+          zipAttrsWith (
+            n: values:
+              if tail values == []
+              then head values
+              else if all isList values
+              then unique (concatLists values)
+              else if all isAttrs values
+              then f (attrPath ++ [n]) values
+              else last values
+          );
+      in
+        f [] attrList;
   in
     # Systems
-    (nixpkgs.lib.fold (a: b: a // b) {} [
+    (recursiveMerge [
       (darwinSystem "stravinsky" [
         ./modules/desktop/darwin.nix
       ])
