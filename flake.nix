@@ -30,10 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    tokyonight-nvim = {
-      url = "github:finistere/tokyonight.nvim";
-      flake = false;
-    };
   };
   outputs = {
     self,

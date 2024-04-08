@@ -18,14 +18,14 @@
     kernelParams = [
       "amd_pstate=guided"
     ];
-    extraModulePackages = [ config.boot.kernelPackages.perf ];
+    extraModulePackages = [config.boot.kernelPackages.perf];
 
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
       kernelModules = ["dm-snapshot"];
       luks.devices = {
         cryptroot = {
-          device = "/dev/disk/by-partuuid/704d5070-c046-4049-b6f3-cd8c6e56cecf";
+          device = "/dev/disk/by-partuuid/143d9d78-3d85-44a8-a68b-7e04a28ed332";
           allowDiscards = true;
         };
       };
@@ -64,7 +64,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/5508-3AD3";
+    device = "/dev/disk/by-partuuid/800c3411-86b2-4def-bd61-5e3fbdfc532f";
     fsType = "vfat";
   };
 

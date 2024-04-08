@@ -10,8 +10,8 @@
   };
   environment.systemPackages = with pkgs; [
     # https://github.com/NixOS/nixpkgs/issues/282983
-    (linuxKernel.packagesFor (linuxKernel.kernels.linux_6_7.override {stdenv = gcc12Stdenv; buildPackages = pkgs.buildPackages // { stdenv = gcc12Stdenv;};})).perf
-    # config.boot.kernelPackages.perf
+    # (linuxKernel.packagesFor (linuxKernel.kernels.linux_6_7.override {stdenv = gcc12Stdenv; buildPackages = pkgs.buildPackages // { stdenv = gcc12Stdenv;};})).perf
+    config.boot.kernelPackages.perf
     kcachegrind
     valgrind
     graphviz
@@ -30,5 +30,4 @@
       };
     };
   };
-
 }

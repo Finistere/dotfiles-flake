@@ -119,7 +119,7 @@
         style = "plain";
       };
       themes = {
-        tokyonight_moon = builtins.readFile (inputs.tokyonight-nvim + "/extras/sublime/tokyonight_moon.tmTheme");
+        tokyonight_moon = builtins.readFile (pkgs.vimPlugins.tokyonight-nvim + "/extras/sublime/tokyonight_moon.tmTheme");
       };
     };
   };

@@ -13,12 +13,6 @@
     packages = with pkgs; [
       inputs.neovim.packages.${system}.default
     ];
-    file = {
-      "helix-tokyonight.nvim" = {
-        target = ".config/helix/themes/tokyonight_moon.toml";
-        text = builtins.readFile (inputs.tokyonight-nvim + "/extras/helix/tokyonight_moon.toml");
-      };
-    };
   };
 
   programs = {
