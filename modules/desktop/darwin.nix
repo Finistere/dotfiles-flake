@@ -77,7 +77,6 @@
       # Apps
       "adobe-creative-cloud"
       "steam"
-      "rustdesk"
     ];
   };
 }

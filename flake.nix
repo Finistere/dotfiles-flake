@@ -169,7 +169,6 @@
         ./modules/desktop/nixos
         ./modules/desktop/nixos/dev.nix
         ./modules/desktop/nixos/gaming.nix
-        ./modules/desktop/nixos/rustdesk-server.nix
         wayland
       ])
     ])

@@ -73,74 +73,75 @@
       wlp3s0.useDHCP = true;
     };
   };
+  services = {
+    displayManager.sddm.enable = true;
 
-  services.xserver = {
-    enable = true;
-    videoDrivers = ["amdgpu"];
-    displayManager = {
-      sddm.enable = true;
-      # defaultSession = "plasmawayland";
+    xserver = {
+      enable = true;
+      videoDrivers = ["amdgpu"];
+      # For touchpad
+      libinput.enable = true;
+      desktopManager.plasma5.enable = true;
     };
-    # For touchpad
-    libinput.enable = true;
-    desktopManager.plasma5.enable = true;
-  };
 
-  services.thinkfan = {
-    enable = true;
-    levels = [
-      [
-        0
-        0
-        55
-      ]
-      [
-        1
-        48
-        60
-      ]
-      [
-        2
-        50
-        61
-      ]
-      [
-        3
-        52
-        63
-      ]
-      [
-        6
-        56
-        65
-      ]
-      [
-        7
-        60
-        85
-      ]
-      [
-        "level auto"
-        80
-        32767
-      ]
-    ];
-  };
+    thinkfan = {
+      enable = true;
+      levels = [
+        [
+          0
+          0
+          55
+        ]
+        [
+          1
+          48
+          60
+        ]
+        [
+          2
+          50
+          61
+        ]
+        [
+          3
+          52
+          63
+        ]
+        [
+          6
+          56
+          65
+        ]
+        [
+          7
+          60
+          85
+        ]
+        [
+          "level auto"
+          80
+          32767
+        ]
+      ];
+    };
 
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1bcf", ATTR{idProduct}=="2b95", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1bcf", ATTR{idProduct}=="0005", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1d6b", ATTR{idProduct}=="0002", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1d6b", ATTR{idProduct}=="0003", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="04d9", ATTR{idProduct}=="0143", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="04f3", ATTR{idProduct}=="24a1", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05e3", ATTR{idProduct}=="0608", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05e3", ATTR{idProduct}=="0610", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05e3", ATTR{idProduct}=="0620", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="06c4", ATTR{idProduct}=="c411", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="17e9", ATTR{idProduct}=="6006", TEST=="power/control", ATTR{power/control}="on"
-  '';
-  services.udev.packages = [pkgs.qmk-udev-rules];
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1bcf", ATTR{idProduct}=="2b95", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1bcf", ATTR{idProduct}=="0005", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1d6b", ATTR{idProduct}=="0002", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1d6b", ATTR{idProduct}=="0003", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="04d9", ATTR{idProduct}=="0143", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="04f3", ATTR{idProduct}=="24a1", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05e3", ATTR{idProduct}=="0608", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05e3", ATTR{idProduct}=="0610", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05e3", ATTR{idProduct}=="0620", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="06c4", ATTR{idProduct}=="c411", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="17e9", ATTR{idProduct}=="6006", TEST=="power/control", ATTR{power/control}="on"
+    '';
+    udev.packages = [pkgs.qmk-udev-rules];
+
+    openssh.enable = true;
+  };
 
   hardware.bluetooth.enable = true;
   hardware.opengl = {
@@ -151,6 +152,4 @@
       libvdpau-va-gl
     ];
   };
-
-  services.openssh.enable = true;
 }
