@@ -553,11 +553,11 @@
         "rustaceanvim": "rustaceanvim"
       },
       "locked": {
-        "lastModified": 1715592409,
-        "narHash": "sha256-foEw8dnOggWDJCsYwZF2QVoudzaPWfBx9kBGHefVe3s=",
+        "lastModified": 1715606721,
+        "narHash": "sha256-Sf2Dg6dECQQs0Dy3n19xZl1KlRfMMvwbGe1ewPUE3Z4=",
         "owner": "finistere",
         "repo": "neovim-flake",
-        "rev": "b311c08dd7436ff4d6800038a4f63c9647ced1ad",
+        "rev": "14be7f47e443a7da4c992e27b8a929c27906ed5c",
         "type": "github"
       },
       "original": {
