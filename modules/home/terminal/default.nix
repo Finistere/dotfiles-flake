@@ -1,7 +1,6 @@
 {
   pkgs,
   me,
-  inputs,
   ...
 }: {
   home = {

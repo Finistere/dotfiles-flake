@@ -46,7 +46,7 @@
           [
             jetbrains.clion
           ]
-          ++ me.lib.ifLinux (with pkgs; [cryptomator]);
+          ++ me.lib.ifLinux (with pkgs; [cryptomator logseq zotero_7]);
       };
 
       programs.kitty = let
@@ -63,5 +63,5 @@
   };
 }
 // me.lib.ifDarwinAttrs {
-  homebrew.casks = ["cryptomator"];
+  homebrew.casks = ["cryptomator" "logseq" "zotero@beta"];
 }

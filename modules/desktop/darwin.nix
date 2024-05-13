@@ -51,7 +51,6 @@
       "doll" # Slack notification
       "mullvadvpn"
       "roon"
-      "joplin" # Notes
       "obsidian" # Notes
       "Rectangle" # window snapping
 
@@ -62,7 +61,6 @@
       "intellij-idea"
       "datagrip"
       "aws-vpn-client"
-      "insomnia"
       "docker"
       "microsoft-teams"
 
@@ -72,10 +70,8 @@
       "discord"
       "telegram"
       "zoom"
-      "element"
 
       # Apps
-      "adobe-creative-cloud"
       "steam"
     ];
   };
