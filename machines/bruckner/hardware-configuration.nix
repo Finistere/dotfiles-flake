@@ -64,7 +64,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-partuuid/800c3411-86b2-4def-bd61-5e3fbdfc532f";
+    device = "/dev/disk/by-partuuid/69958231-5186-46c6-a692-881d34a2df8d";
     fsType = "vfat";
   };
 
