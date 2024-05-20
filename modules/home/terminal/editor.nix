@@ -17,7 +17,7 @@
 
   programs = {
     helix = {
-      enable = true;
+      enable = false;
       package = let
         extraPackages = with pkgs; [
           rust-analyzer-unwrapped
