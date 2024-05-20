@@ -48,6 +48,7 @@
       "keepassxc"
       "raycast" # Better Spotlight, it detects apps installed by nix-darwin
       "lunar" # Luminosity control
+      "flux" # Blue light filter
       "doll" # Slack notification
       "mullvadvpn"
       "roon"
