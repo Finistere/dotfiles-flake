@@ -32,7 +32,7 @@ if test (uname) = Darwin
   ### Add nix binary paths to the PATH
   # https://github.com/LnL7/nix-darwin/issues/122
   # Perhaps someday will be fixed in nix or nix-darwin itself
-  fish_add_path --prepend --global "$HOME/.nix-profile/bin" /nix/var/nix/profiles/default/bin /run/current-system/sw/bin
+  fish_add_path --prepend --global "$HOME/.nix-profile/bin" /run/current-system/sw/bin
 else
   function os-switch
     sudo nixos-rebuild switch --flake ~/flakes/dotfiles
