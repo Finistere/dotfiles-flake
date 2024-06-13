@@ -53,7 +53,7 @@
       "mullvadvpn"
       "roon"
       "obsidian" # Notes
-      "Rectangle" # window snapping
+      "nikitabobko/tap/aerospace" # tiling window manager
 
       # Work
       "notion"
