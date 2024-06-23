@@ -43,10 +43,8 @@
   # powerManagement.cpuFreqGovernor = "schedutil";
 
   services.xserver.videoDrivers = ["amdgpu"];
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    # Vulkan
-    driSupport = true;
     extraPackages = with pkgs; [
       # OpenCL
       rocm-opencl-icd

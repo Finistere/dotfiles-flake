@@ -46,7 +46,7 @@
           [
             jetbrains.clion
           ]
-          ++ me.lib.ifLinux (with pkgs; [cryptomator logseq zotero_7]);
+          ++ me.lib.ifLinux (with pkgs; [cryptomator]);
       };
 
       programs.kitty = let
