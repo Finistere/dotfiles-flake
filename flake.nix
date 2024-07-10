@@ -25,11 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim.url = "github:finistere/neovim-flake";
-    helix = {
-      url = "github:helix-editor/helix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
+    # helix = {
+    #   url = "github:helix-editor/helix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.flake-utils.follows = "flake-utils";
+    # };
   };
   outputs = {
     self,

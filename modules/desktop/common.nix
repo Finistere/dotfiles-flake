@@ -45,8 +45,25 @@
         packages = with pkgs;
           [
             jetbrains.clion
+            vale
           ]
           ++ me.lib.ifLinux (with pkgs; [cryptomator]);
+        # Used for neovim
+        file.".vale.ini".text = ''
+          StylesPath = .vale-styles
+
+          MinAlertLevel = suggestion
+
+          Packages = Microsoft, proselint, write-good, alex, Readability, Joblint
+
+          [*]
+          BasedOnStyles = Vale, Microsoft, proselint, write-good, alex, Readability, Joblint
+        '';
+        activation = {
+          vale = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+            run ${pkgs.vale}/bin/vale sync
+          '';
+        };
       };
 
       programs.kitty = let
