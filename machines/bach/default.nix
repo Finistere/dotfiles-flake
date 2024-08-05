@@ -75,12 +75,12 @@
   };
   services = {
     displayManager.sddm.enable = true;
+    # For touchpad
+    libinput.enable = true;
 
     xserver = {
       enable = true;
       videoDrivers = ["amdgpu"];
-      # For touchpad
-      libinput.enable = true;
       desktopManager.plasma5.enable = true;
     };
 
