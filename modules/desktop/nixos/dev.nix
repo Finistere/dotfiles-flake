@@ -16,6 +16,7 @@
     valgrind
     graphviz
     virt-manager # kvm
+    imagemagick # used for kitten icat
   ];
 
   # KVM

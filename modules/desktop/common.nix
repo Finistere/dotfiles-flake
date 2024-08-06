@@ -44,7 +44,6 @@
       home = {
         packages = with pkgs;
           [
-            jetbrains.clion
             vale
           ]
           ++ me.lib.ifLinux (with pkgs; [cryptomator]);
