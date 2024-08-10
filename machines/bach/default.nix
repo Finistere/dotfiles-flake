@@ -74,15 +74,8 @@
     };
   };
   services = {
-    displayManager.sddm.enable = true;
     # For touchpad
     libinput.enable = true;
-
-    xserver = {
-      enable = true;
-      videoDrivers = ["amdgpu"];
-      desktopManager.plasma5.enable = true;
-    };
 
     thinkfan = {
       enable = true;
