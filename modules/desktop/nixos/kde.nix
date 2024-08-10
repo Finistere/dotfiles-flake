@@ -1,10 +1,12 @@
 _: {
-  services.displayManager = {
-    sddm.enable = true;
-    defaultSession = "plasmawayland";
-  };
-  services.xserver = {
-    enable = true;
-    desktopManager.plasma5.enable = true;
+  services = {
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+      defaultSession = "plasma";
+    };
+    desktopManager.plasma6.enable = true;
   };
 }
