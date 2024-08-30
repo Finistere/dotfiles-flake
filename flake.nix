@@ -51,22 +51,6 @@
         };
       };
     };
-    wayland = _: {
-      nix.settings = {
-        # add binary caches
-        trusted-public-keys = [
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-          "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-        ];
-        substituters = [
-          "https://cache.nixos.org"
-          "https://nixpkgs-wayland.cachix.org"
-        ];
-      };
-
-      # use it as an overlay
-      nixpkgs.overlays = [inputs.nixpkgs-wayland.overlay];
-    };
     mkMe = hostName: system: {
       inherit hostName system;
       userName = "brabier";
@@ -77,25 +61,15 @@
           if null == builtins.match ''^.*-darwin$'' system
           then cases.linux
           else cases.darwin;
-        ifLinux = list:
+        ifLinuxOr = default: value:
           matchOs {
-            linux = list;
-            darwin = [];
+            linux = value;
+            darwin = default;
           };
-        ifDarwin = list:
+        ifDarwinOr = default: value:
           matchOs {
-            linux = [];
-            darwin = list;
-          };
-        ifLinuxAttrs = attrs:
-          matchOs {
-            linux = attrs;
-            darwin = {};
-          };
-        ifDarwinAttrs = attrs:
-          matchOs {
-            linux = {};
-            darwin = attrs;
+            linux = default;
+            darwin = value;
           };
       };
     };

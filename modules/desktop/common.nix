@@ -11,22 +11,12 @@
   programs.fish.enable = true;
   users.users.${me.userName}.shell = pkgs.fish;
 
-  fonts = let
+  fonts = {
     packages = with pkgs; [
       jetbrains-mono
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
-  in
-    me.lib.matchOs {
-      darwin = {
-        fontDir.enable = true;
-        fonts = packages;
-      };
-      linux = {
-        inherit packages;
-        fontDir.enable = true;
-      };
-    };
+  };
 
   home-manager = {
     useGlobalPkgs = true;
@@ -45,8 +35,9 @@
         packages = with pkgs;
           [
             vale
+            wireshark
           ]
-          ++ me.lib.ifLinux (with pkgs; [cryptomator]);
+          ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator]);
         # Used for neovim
         file.".vale.ini".text = ''
           StylesPath = .vale-styles
@@ -78,6 +69,6 @@
     };
   };
 }
-// me.lib.ifDarwinAttrs {
+// me.lib.ifDarwinOr {} {
   homebrew.casks = ["cryptomator" "logseq" "zotero@beta"];
 }

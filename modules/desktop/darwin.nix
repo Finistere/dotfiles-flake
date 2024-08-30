@@ -14,6 +14,10 @@
       packages = with pkgs; [
         colima
       ];
+      file.".aerospace" = {
+        source = ../home/.aerospace.toml;
+        target = ".aerospace.toml";
+      };
     };
     programs.ssh.matchBlocks."*".extraOptions = {
       AddKeysToAgent = "yes";
@@ -26,6 +30,8 @@
       AppleShowAllFiles = true;
       ShowPathbar = true;
     };
+    # Disable windows opening animations
+    NSGlobalDomain.NSAutomaticWindowAnimationsEnabled = false;
   };
 
   homebrew = {
@@ -40,6 +46,8 @@
     brews = [
       "coreutils"
       "gnu-sed" # for neovim plugin
+      # https://github.com/FelixKratz/JankyBorders
+      "borders"
     ];
     casks = [
       "google-chrome"
@@ -53,7 +61,9 @@
       "mullvadvpn"
       "roon"
       "obsidian" # Notes
-      "nikitabobko/tap/aerospace" # tiling window manager
+
+      # Window manager
+      "nikitabobko/tap/aerospace"
 
       # Work
       "notion"
@@ -74,6 +84,14 @@
 
       # Apps
       "steam"
+
+      # Virtualization
+      "utm"
+    ];
+    taps = [
+      "nikitabobko/tap"
+      # for JankyBorders
+      "FelixKratz/formulae"
     ];
   };
 }
