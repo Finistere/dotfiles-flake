@@ -50,9 +50,10 @@
           BasedOnStyles = Vale, Microsoft, proselint, write-good, alex, Readability, Joblint
         '';
         activation = {
-          vale = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
-            run ${pkgs.vale}/bin/vale sync
-          '';
+          # Doesn't work for linux, service seems isolated?
+          # vale = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+          #   run ${pkgs.vale}/bin/vale sync
+          # '';
         };
       };
 
