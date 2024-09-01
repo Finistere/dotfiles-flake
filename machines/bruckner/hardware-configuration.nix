@@ -22,7 +22,7 @@
 
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-      kernelModules = ["dm-snapshot"];
+      kernelModules = ["dm-snapshot" "amdgpu"];
       luks.devices = {
         cryptroot = {
           device = "/dev/disk/by-partuuid/143d9d78-3d85-44a8-a68b-7e04a28ed332";
@@ -38,22 +38,24 @@
       efi.canTouchEfiVariables = true;
     };
   };
-
-  hardware.cpu.amd.updateMicrocode = true;
   # powerManagement.cpuFreqGovernor = "schedutil";
 
   services.xserver.videoDrivers = ["amdgpu"];
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      # OpenCL
-      rocm-opencl-icd
-      # Vulkan
-      amdvlk
-      # VA-API
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
+  hardware = {
+    cpu.amd.updateMicrocode = true;
+    amdgpu.opencl.enable = true;
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        # OpenCL
+        rocm-opencl-icd
+        # Vulkan
+        amdvlk
+        # VA-API
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
   };
 
   fileSystems."/" = {
