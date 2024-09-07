@@ -87,6 +87,10 @@
 
       # Virtualization
       "utm"
+
+      # LLM
+      "ollamac"
+      "anythingllm"
     ];
     taps = [
       "nikitabobko/tap"
