@@ -36,6 +36,7 @@
           [
             vale
             wireshark
+            graphviz
           ]
           ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator]);
         # Used for neovim

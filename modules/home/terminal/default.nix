@@ -44,7 +44,7 @@
         };
         "bruckner" = {
           extraOptions = {
-            HostName = "192.168.1.16";
+            HostName = "192.168.1.19";
           };
         };
         "*compute.amazonaws.com" = {
