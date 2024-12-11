@@ -27,8 +27,16 @@
 
   # KVM
   virtualisation.libvirtd.enable = true;
-  users.users.${me.userName}.extraGroups = ["libvirtd"];
-  programs.dconf.enable = true;
+  users.users.${me.userName}.extraGroups = ["libvirtd" "wireshark"];
+
+  programs = {
+    dconf.enable = true;
+    nix-ld.enable = true;
+
+    wireshark.enable = true;
+    wireshark.package = pkgs.wireshark;
+  };
+
   home-manager.users.${me.userName} = {
     dconf.settings = {
       "org/virt-manager/virt-manager/connections" = {

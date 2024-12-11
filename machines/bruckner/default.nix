@@ -13,4 +13,9 @@
 
   boot.tmp.useTmpfs = true;
   services.openssh.enable = true;
+
+  # networking.firewall = {
+  #   enable = true;
+  #   allowedTCPPorts = [8123];
+  # };
 }

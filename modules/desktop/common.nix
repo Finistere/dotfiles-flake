@@ -35,8 +35,8 @@
         packages = with pkgs;
           [
             vale
-            wireshark
             graphviz
+            btop
           ]
           ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator]);
         # Used for neovim
