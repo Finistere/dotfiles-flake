@@ -118,7 +118,10 @@
         style = "plain";
       };
       themes = {
-        tokyonight_moon = builtins.readFile (pkgs.vimPlugins.tokyonight-nvim + "/extras/sublime/tokyonight_moon.tmTheme");
+        tokyonight_moon = {
+          src = pkgs.vimPlugins.tokyonight-nvim + "/extras/sublime";
+          file = "tokyonight_moon.tmTheme";
+        };
       };
     };
   };
