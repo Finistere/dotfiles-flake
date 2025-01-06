@@ -59,8 +59,8 @@
       "flux" # Blue light filter
       "doll" # Slack notification
       "mullvadvpn"
-      "roon"
-      "obsidian" # Notes
+      # "roon"
+      # "obsidian" # Notes
 
       # Window manager
       "nikitabobko/tap/aerospace"
@@ -71,7 +71,7 @@
       "linear-linear"
       "intellij-idea"
       "datagrip"
-      "aws-vpn-client"
+      # "aws-vpn-client"
       "docker"
       "microsoft-teams"
 
@@ -89,8 +89,8 @@
       "utm"
 
       # LLM
-      "ollamac"
-      "anythingllm"
+      # "ollamac"
+      # "anythingllm"
     ];
     taps = [
       "nikitabobko/tap"

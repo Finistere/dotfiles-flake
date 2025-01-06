@@ -4,6 +4,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    mac-app-util.url = "github:hraban/mac-app-util";
     flake-programs-sqlite = {
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +39,7 @@
     home-manager,
     agenix,
     flake-utils,
+    mac-app-util,
     ...
   } @ inputs: let
     nixConfig = _: {
@@ -45,8 +47,8 @@
       nix = {
         registry.nixpkgs.flake = inputs.nixpkgs;
         nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+        optimise.automatic = true;
         settings = {
-          auto-optimise-store = true;
           experimental-features = ["nix-command" "flakes"];
         };
       };
@@ -83,6 +85,7 @@
         modules =
           [
             nixConfig
+            mac-app-util.darwinModules.default
             {
               services.nix-daemon.enable = true;
               age.identityPaths = ["/etc/ssh/host_ed25519"];
@@ -92,6 +95,11 @@
             agenix.darwinModules.default
             home-manager.darwinModules.home-manager
             ./machines/${hostName}
+            {
+              home-manager.users.${me.userName}.imports = [
+                mac-app-util.homeManagerModules.default
+              ];
+            }
           ]
           ++ extraModules;
       };
