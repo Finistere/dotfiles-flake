@@ -37,6 +37,8 @@
             vale
             graphviz
             btop
+            devenv
+            aider-chat
           ]
           ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator]);
         # Used for neovim

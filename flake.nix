@@ -51,6 +51,9 @@
         settings = {
           experimental-features = ["nix-command" "flakes"];
         };
+        extraOptions = ''
+          trusted-users = root brabier
+        '';
       };
     };
     mkMe = hostName: system: {

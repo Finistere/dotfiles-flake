@@ -48,7 +48,7 @@
       enable = true;
       extraPackages = with pkgs; [
         # OpenCL
-        rocm-opencl-icd
+        rocmPackages.clr.icd
         # Vulkan
         amdvlk
         # VA-API
