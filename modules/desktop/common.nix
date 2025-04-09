@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   inputs,
   me,
   ...
@@ -38,9 +39,9 @@
             graphviz
             btop
             devenv
-            aider-chat
           ]
-          ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator]);
+          ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator])
+          ++ (with pkgs-unstable; [aider-chat]);
         # Used for neovim
         file.".vale.ini".text = ''
           StylesPath = .vale-styles

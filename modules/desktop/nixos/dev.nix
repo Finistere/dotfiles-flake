@@ -45,11 +45,12 @@
       };
     };
     home.packages = with pkgs; [
-      kcachegrind
+      kdePackages.kcachegrind
       valgrind
       graphviz
       virt-manager # kvm
       imagemagick # used for kitten icat
+      code-server
     ];
   };
 }

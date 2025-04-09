@@ -2,6 +2,7 @@
   description = "Benjamin's machines";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:finistere/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     mac-app-util.url = "github:hraban/mac-app-util";
@@ -84,7 +85,12 @@
     in {
       darwinConfigurations.${hostName} = darwin.lib.darwinSystem {
         inherit system;
-        specialArgs = {inherit inputs me;};
+        specialArgs = {
+          inherit inputs me;
+          pkgs-unstable = import inputs.nixpkgs-unstable {
+            inherit system;
+          };
+        };
         modules =
           [
             nixConfig
@@ -113,13 +119,18 @@
     in {
       nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs me;};
+        specialArgs = {
+          inherit inputs me;
+          pkgs-unstable = import inputs.nixpkgs-unstable {
+            inherit system;
+          };
+        };
         modules =
           [
             nixConfig
             inputs.flake-programs-sqlite.nixosModules.programs-sqlite
             agenix.nixosModules.default
-            home-manager.nixosModule
+            home-manager.nixosModules.home-manager
             ./machines/${hostName}
           ]
           ++ extraModules;
