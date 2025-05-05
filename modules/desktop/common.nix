@@ -20,6 +20,7 @@
   };
 
   home-manager = {
+    backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
@@ -37,7 +38,6 @@
           [
             vale
             graphviz
-            btop
             devenv
           ]
           ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator])
@@ -58,6 +58,13 @@
           # vale = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
           #   run ${pkgs.vale}/bin/vale sync
           # '';
+        };
+      };
+
+      programs.btop = {
+        enable = true;
+        settings = {
+          color_theme = "tokyo-night";
         };
       };
 

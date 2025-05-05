@@ -8,6 +8,7 @@
     ../common.nix
     ./sound.nix
     ./kde.nix
+    ./gaming.nix
   ];
 
   virtualisation.docker.enable = true;
