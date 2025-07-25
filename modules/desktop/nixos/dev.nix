@@ -27,7 +27,10 @@
 
   # KVM
   virtualisation.libvirtd.enable = true;
-  users.users.${me.userName}.extraGroups = ["libvirtd" "wireshark"];
+  users.users.${me.userName}.extraGroups = [
+    "libvirtd"
+    "wireshark"
+  ];
 
   programs = {
     dconf.enable = true;
@@ -50,7 +53,6 @@
       graphviz
       virt-manager # kvm
       imagemagick # used for kitten icat
-      code-server
     ];
   };
 }

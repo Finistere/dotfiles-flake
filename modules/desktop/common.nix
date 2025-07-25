@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   inputs,
   me,
   ...
@@ -40,8 +39,7 @@
             graphviz
             devenv
           ]
-          ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator])
-          ++ (with pkgs-unstable; [aider-chat]);
+          ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator]);
         # Used for neovim
         file.".vale.ini".text = ''
           StylesPath = .vale-styles
@@ -70,17 +68,21 @@
 
       programs.kitty = let
         themes = {
-          tokyonight_moon = builtins.readFile (pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf");
+          tokyonight_moon = builtins.readFile (
+            pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf"
+          );
         };
       in {
         enable = true;
-        extraConfig =
-          builtins.readFile ../home/kitty.conf
-          + themes.${me.theme};
+        extraConfig = builtins.readFile ../home/kitty.conf + themes.${me.theme};
       };
     };
   };
 }
 // me.lib.ifDarwinOr {} {
-  homebrew.casks = ["cryptomator" "logseq" "zotero@beta"];
+  homebrew.casks = [
+    "cryptomator"
+    "logseq"
+    "zotero@beta"
+  ];
 }

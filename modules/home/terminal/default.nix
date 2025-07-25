@@ -13,6 +13,7 @@
       whois
       erdtree
       sd
+      claude-code
     ];
     file."erdtree" = {
       target = ".config/erdtree/.erdtree.toml";

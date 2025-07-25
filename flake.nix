@@ -2,12 +2,11 @@
   description = "Benjamin's machines";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:finistere/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     mac-app-util.url = "github:hraban/mac-app-util";
-    flake-programs-sqlite = {
-      url = "github:wamserma/flake-programs-sqlite";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -37,6 +36,7 @@
     agenix,
     flake-utils,
     mac-app-util,
+    nix-index-database,
     ...
   } @ inputs: let
     nixConfig = _: {
@@ -46,7 +46,10 @@
         nixPath = ["nixpkgs=${inputs.nixpkgs}"];
         optimise.automatic = true;
         settings = {
-          experimental-features = ["nix-command" "flakes"];
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
         };
         extraOptions = ''
           trusted-users = root brabier
@@ -83,9 +86,6 @@
         inherit system;
         specialArgs = {
           inherit inputs me;
-          pkgs-unstable = import inputs.nixpkgs-unstable {
-            inherit system;
-          };
         };
         modules =
           [
@@ -117,17 +117,15 @@
         inherit system;
         specialArgs = {
           inherit inputs me;
-          pkgs-unstable = import inputs.nixpkgs-unstable {
-            inherit system;
-          };
         };
         modules =
           [
             nixConfig
-            inputs.flake-programs-sqlite.nixosModules.programs-sqlite
             agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             ./machines/${hostName}
+            nix-index-database.nixosModules.nix-index
+            {programs.command-not-found.enable = false;}
           ]
           ++ extraModules;
       };
@@ -164,15 +162,17 @@
       ])
     ])
     # Shells
-    // flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-    in {
-      devShells.default = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
-          agenix.packages.${system}.default
-        ];
-      };
-    });
+    // flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+      in {
+        devShells.default = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [
+            agenix.packages.${system}.default
+          ];
+        };
+      }
+    );
 }
