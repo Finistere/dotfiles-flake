@@ -22,6 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim.url = "github:finistere/neovim-flake";
+    starship-jj.url = "gitlab:lanastara_foss/starship-jj";
     # helix = {
     #   url = "github:helix-editor/helix";
     #   inputs.nixpkgs.follows = "nixpkgs";

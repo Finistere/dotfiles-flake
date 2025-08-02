@@ -1,6 +1,8 @@
 {
   pkgs,
   me,
+  inputs,
+  system,
   ...
 }: {
   home = {
@@ -18,6 +20,10 @@
     file."erdtree" = {
       target = ".config/erdtree/.erdtree.toml";
       text = builtins.readFile ./.erdtree.toml;
+    };
+    file."starship-jj" = {
+      target = ".config/starship-jj/starship-jj.toml";
+      text = builtins.readFile ./starship-jj.toml;
     };
   };
 
@@ -60,6 +66,20 @@
     starship = {
       enable = true;
       settings = {
+        format = "\$username\$hostname\$localip\$kubernetes\$directory\${custom.jj}\$nix_shell\$direnv\$sudo\$cmd_duration\$line_break\$jobs\$time\$status\$os\$container\$netns\$shell\$character";
+        custom.jj = {
+          command = "prompt";
+          format = "$output";
+          ignore_timeout = true;
+          shell = [
+            "${inputs.starship-jj.packages.${system}.starship-jj}/bin/starship-jj"
+            "--ignore-working-copy"
+            "starship"
+          ];
+          use_stdin = false;
+          when = true;
+        };
+
         git_status = {
           ahead = "⇡\${count}";
           diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";

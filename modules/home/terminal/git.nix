@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home = {
     packages = with pkgs; [
       tig
@@ -47,7 +44,11 @@
         fetch.pruneTags = true;
       };
 
-      ignores = [".envrc" ".ignore" ".direnv"];
+      ignores = [
+        ".envrc"
+        ".ignore"
+        ".direnv"
+      ];
     };
 
     jujutsu = {
@@ -55,6 +56,12 @@
       settings = {
         user.name = "Benjamin Rabier";
         user.email = "benjamin+git@rabier.dev";
+        ui.diff-formatter = [
+          "difft"
+          "--color=always"
+          "$left"
+          "$right"
+        ];
       };
     };
   };
