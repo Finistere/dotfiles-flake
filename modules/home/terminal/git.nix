@@ -48,6 +48,8 @@
         ".envrc"
         ".ignore"
         ".direnv"
+        ".jj"
+        ".github"
       ];
     };
 
