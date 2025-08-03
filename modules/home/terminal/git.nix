@@ -61,7 +61,7 @@
       settings = {
         user.name = "Benjamin Rabier";
         user.email = "benjamin+git@rabier.dev";
-        template.git_push_bookmark = "\"brabier\"/ ++ change_id.short()";
+        templates.git_push_bookmark = "\"brabier/\" ++ change_id.short()";
         ui = {
           diff-formatter = [
             "difft"
@@ -71,6 +71,24 @@
           ];
           editor = "vi";
           diff-editor = "diffview";
+        };
+        aliases = {
+          d = ["diff"];
+          s = ["show"];
+          f = [
+            "git"
+            "fetch"
+          ];
+          # Find the closest ancestor with a bookmark pointing at it, and move it to the
+          # parent of the working copy.
+          tug = [
+            "bookmark"
+            "move"
+            "--from"
+            "heads(::@- & bookmarks())"
+            "--to"
+            "@-"
+          ];
         };
         merge-tools = {
           # See https://github.com/sindrets/diffview.nvim/issues/562#issuecomment-2867142680
@@ -108,25 +126,6 @@
             ];
             merge-conflict-exit-codes = [1];
             conflict-marker-style = "git";
-          };
-
-          aliases = {
-            d = ["diff"];
-            s = ["show"];
-            f = [
-              "git"
-              "fetch"
-            ];
-            # Find the closest ancestor with a bookmark pointing at it, and move it to the
-            # parent of the working copy.
-            tug = [
-              "bookmark"
-              "move"
-              "--from"
-              "heads(::@- & bookmarks())"
-              "--to"
-              "@-"
-            ];
           };
         };
       };

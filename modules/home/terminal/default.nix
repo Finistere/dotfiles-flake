@@ -66,7 +66,7 @@
     starship = {
       enable = true;
       settings = {
-        format = "\$username\$hostname\$localip\$kubernetes\$directory\${custom.jj}\$nix_shell\$direnv\$sudo\$cmd_duration\$line_break\$jobs\$time\$status\$os\$container\$netns\$shell\$character";
+        format = "\$username\$hostname\$localip\$kubernetes\$directory\${custom.jj}\$git_branch\$git_commit\$git_state\$git_metrics\$git_status\$nix_shell\$direnv\$sudo\$cmd_duration\$line_break\$jobs\$time\$status\$os\$container\$netns\$shell\$character";
         custom.jj = {
           command = "prompt";
           format = "$output";
