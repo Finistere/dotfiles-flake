@@ -24,7 +24,7 @@ end
 
 if test (uname) = Darwin
   function os-switch
-    ~/flakes/dotfiles/result/sw/bin/darwin-rebuild switch --flake ~/flakes/dotfiles
+    sudo nix run ~/flakes/dotfiles#darwin-rebuild -- switch --flake ~/flakes/dotfiles
   end
   # Homebrew
   eval "$(/opt/homebrew/bin/brew shellenv)"

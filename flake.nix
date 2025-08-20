@@ -175,5 +175,11 @@
           ];
         };
       }
-    );
+    )
+    // {
+      apps.aarch64-darwin.darwin-rebuild = {
+        type = "app";
+        program = "${darwin.packages.aarch64-darwin.darwin-rebuild}/bin/darwin-rebuild";
+      };
+    };
 }
