@@ -61,6 +61,7 @@
       "mullvadvpn"
       # "roon"
       # "obsidian" # Notes
+      "rustdesk"
 
       # Window manager
       "nikitabobko/tap/aerospace"

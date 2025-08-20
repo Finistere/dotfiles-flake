@@ -93,7 +93,7 @@
             nixConfig
             mac-app-util.darwinModules.default
             {
-              services.nix-daemon.enable = true;
+              system.primaryUser = me.userName;
               age.identityPaths = ["/etc/ssh/host_ed25519"];
             }
             # Debug agenix with:
