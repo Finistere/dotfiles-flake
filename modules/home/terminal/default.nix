@@ -70,7 +70,6 @@
         custom.jj = {
           command = "prompt";
           format = "$output";
-          ignore_timeout = true;
           shell = [
             "${inputs.starship-jj.packages.${system}.starship-jj}/bin/starship-jj"
             "--ignore-working-copy"
