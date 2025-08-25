@@ -1,4 +1,4 @@
 {me, ...}: {
-  system.stateVersion = 4;
-  home-manager.users.${me.userName}.home.stateVersion = "22.11";
+  system.stateVersion = 6;
+  home-manager.users.${me.userName}.home.stateVersion = "25.05";
 }
