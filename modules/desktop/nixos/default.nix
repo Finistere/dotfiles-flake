@@ -1,7 +1,6 @@
 {
   pkgs,
   me,
-  config,
   ...
 }: {
   imports = [
@@ -47,6 +46,7 @@
     lm_sensors
     slack
     docker-compose
+    docker-buildx
   ];
   services.fwupd.enable = true;
   security.sudo.extraConfig = ''
@@ -61,7 +61,10 @@
     programs.keychain = {
       enable = true;
       keys = ["id_ed25519"];
-      extraFlags = ["--quiet" "--nogui"];
+      extraFlags = [
+        "--quiet"
+        "--nogui"
+      ];
     };
   };
 }

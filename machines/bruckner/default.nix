@@ -18,22 +18,4 @@
     enable = true;
     allowedTCPPorts = [8008];
   };
-  services.rustdesk-server = {
-    enable = true;
-    signal = {
-      relayHosts = ["127.0.0.1"];
-      extraArgs = [
-        "-k"
-        "_" # Disable key verification (for easier setup)
-      ];
-    };
-    relay = {
-      enable = true;
-      extraArgs = [
-        "-k"
-        "_" # Disable key verification (for easier setup)
-      ];
-    };
-    openFirewall = true;
-  };
 }

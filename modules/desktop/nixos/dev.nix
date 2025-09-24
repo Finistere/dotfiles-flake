@@ -14,17 +14,6 @@
     config.boot.kernelPackages.perf
   ];
 
-  services.ollama = {
-    enable = true;
-    acceleration = "rocm";
-    host = "0.0.0.0";
-    openFirewall = true;
-    environmentVariables = {
-      HCC_AMDGPU_TARGET = "gfx1100"; # used to be necessary, but doesn't seem to anymore
-    };
-    rocmOverrideGfx = "11.0.0";
-  };
-
   # KVM
   virtualisation.libvirtd.enable = true;
   users.users.${me.userName}.extraGroups = [
@@ -53,7 +42,6 @@
       graphviz
       virt-manager # kvm
       imagemagick # used for kitten icat
-      rustdesk
     ];
   };
 }
