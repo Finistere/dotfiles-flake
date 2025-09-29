@@ -14,15 +14,29 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = ["kvm-amd" "amd-pstate" "amdgpu"];
+    kernelModules = [
+      "kvm-amd"
+      "amd-pstate"
+      "amdgpu"
+    ];
     kernelParams = [
       "amd_pstate=guided"
     ];
-    extraModulePackages = [config.boot.kernelPackages.perf];
+    extraModulePackages = [pkgs.perf];
 
     initrd = {
-      availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-      kernelModules = ["dm-snapshot" "amdgpu"];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "ahci"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+      ];
+      kernelModules = [
+        "dm-snapshot"
+        "amdgpu"
+      ];
       luks.devices = {
         cryptroot = {
           device = "/dev/disk/by-partuuid/143d9d78-3d85-44a8-a68b-7e04a28ed332";
