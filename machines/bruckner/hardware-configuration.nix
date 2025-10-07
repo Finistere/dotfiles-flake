@@ -63,8 +63,6 @@
       extraPackages = with pkgs; [
         # OpenCL
         rocmPackages.clr.icd
-        # Vulkan
-        amdvlk
         # VA-API
         vaapiVdpau
         libvdpau-va-gl
