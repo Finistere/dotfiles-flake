@@ -64,7 +64,7 @@
         # OpenCL
         rocmPackages.clr.icd
         # VA-API
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };
