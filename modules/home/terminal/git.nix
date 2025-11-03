@@ -19,19 +19,21 @@
 
     gh.enable = true;
 
+    difftastic = {
+      enable = true;
+      git.enable = true;
+    };
+
+    delta = {
+      enable = false;
+      options = {
+        features = "decorations navigate";
+      };
+    };
+
     git = {
       enable = true;
-      difftastic = {
-        enable = true;
-      };
-      delta = {
-        enable = false;
-        options = {
-          features = "decorations navigate";
-        };
-      };
-
-      extraConfig = {
+      settings = {
         user.name = "Benjamin Rabier";
         user.email = "benjamin+git@rabier.dev";
         push.default = "current";

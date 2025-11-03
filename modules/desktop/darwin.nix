@@ -56,9 +56,9 @@
       "keepassxc"
       "raycast" # Better Spotlight, it detects apps installed by nix-darwin
       "lunar" # Luminosity control
-      "flux" # Blue light filter
+      "flux-app" # Blue light filter
       "doll" # Slack notification
-      "mullvadvpn"
+      "mullvad-vpn"
       # "roon"
       # "obsidian" # Notes
 
@@ -72,8 +72,9 @@
       "intellij-idea"
       "datagrip"
       # "aws-vpn-client"
-      "docker"
+      "docker-desktop"
       "microsoft-teams"
+      "cursor"
 
       # People
       "slack"
@@ -81,6 +82,7 @@
       "discord"
       "telegram"
       "zoom"
+      "signal"
 
       # Apps
       "steam"
