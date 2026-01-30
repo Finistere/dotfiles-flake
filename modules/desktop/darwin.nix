@@ -59,17 +59,12 @@
       "flux-app" # Blue light filter
       "doll" # Slack notification
       "mullvad-vpn"
-      # "roon"
-      # "obsidian" # Notes
 
       # Window manager
       "nikitabobko/tap/aerospace"
 
       # Work
-      "notion"
-      "around"
       "linear-linear"
-      "intellij-idea"
       "datagrip"
       # "aws-vpn-client"
       "docker-desktop"
@@ -84,9 +79,6 @@
       "zoom"
       "signal"
 
-      # Apps
-      "steam"
-
       # Virtualization
       "utm"
 
@@ -95,6 +87,7 @@
       # "anythingllm"
     ];
     taps = [
+      # Aerospace
       "nikitabobko/tap"
       # for JankyBorders
       "FelixKratz/formulae"
