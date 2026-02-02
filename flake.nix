@@ -110,6 +110,37 @@
           ++ extraModules;
       };
     };
+    darwinDeterminateSystem = hostName: extraModules: let
+      system = "aarch64-darwin";
+      me = mkMe hostName system;
+    in {
+      darwinConfigurations.${hostName} = darwin.lib.darwinSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs me;
+        };
+        modules =
+          [
+            mac-app-util.darwinModules.default
+            {
+      	      nixpkgs.config.allowUnfree = true;
+              system.primaryUser = me.userName;
+              age.identityPaths = ["/etc/ssh/host_ed25519"];
+            }
+            # Debug agenix with:
+            # sudo launchctl debug system/org.nixos.activate-agenix --stdout --stderr
+            agenix.darwinModules.default
+            home-manager.darwinModules.home-manager
+            ./machines/${hostName}
+            {
+              home-manager.users.${me.userName}.imports = [
+                mac-app-util.homeManagerModules.default
+              ];
+            }
+          ]
+          ++ extraModules;
+      };
+    };
     nixosSystem = hostName: extraModules: let
       system = "x86_64-linux";
       me = mkMe hostName system;
@@ -150,6 +181,9 @@
   in
     # Systems
     (recursiveMerge [
+      (darwinDeterminateSystem "zelenka" [
+        ./modules/desktop/darwin.nix
+      ])
       (darwinSystem "stravinsky" [
         ./modules/desktop/darwin.nix
       ])

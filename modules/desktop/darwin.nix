@@ -54,22 +54,20 @@
       "google-drive"
       "firefox"
       "keepassxc"
-      "raycast" # Better Spotlight, it detects apps installed by nix-darwin
+      # "raycast" # Better Spotlight, it detects apps installed by nix-darwin
       "lunar" # Luminosity control
       "flux-app" # Blue light filter
       "doll" # Slack notification
-      "mullvad-vpn"
 
       # Window manager
       "nikitabobko/tap/aerospace"
 
       # Work
-      "linear-linear"
-      "datagrip"
+      # "datagrip"
       # "aws-vpn-client"
       "docker-desktop"
-      "microsoft-teams"
-      "cursor"
+      "notion"
+      "1password"
 
       # People
       "slack"
@@ -81,10 +79,6 @@
 
       # Virtualization
       "utm"
-
-      # LLM
-      # "ollamac"
-      # "anythingllm"
     ];
     taps = [
       # Aerospace
