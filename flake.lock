@@ -111,11 +111,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1755412999,
-        "narHash": "sha256-qD+X0KuAp0iiqElrlouXM43fmW7VCg7fGQzr6oal318=",
+        "lastModified": 1768113825,
+        "narHash": "sha256-f09fAifGPEuRrz1DFY910jexq0DaBuQBbq7WcxQIUgs=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "fe8535d8c9afe780d5344d28db7fe1de3df736a0",
+        "rev": "55106e04d905c6a7726d0f6be77ed39a99f66a61",
         "type": "github"
       },
       "original": {
@@ -401,11 +401,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768770171,
-        "narHash": "sha256-JPmLGZgdWa8QcQbbtBqyZhpmxIHZ3lUO48laERjw+4k=",
+        "lastModified": 1769978395,
+        "narHash": "sha256-gj1yP3spUb1vGtaF5qPhshd2j0cg4xf51pklDsIm19Q=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "521d5ea1a229ba315dd1cceaf869946ddcc83d36",
+        "rev": "984708c34d3495a518e6ab6b8633469bbca2f77a",
         "type": "github"
       },
       "original": {
@@ -481,11 +481,11 @@
         "tree-sitter-language-injection-nvim": "tree-sitter-language-injection-nvim"
       },
       "locked": {
-        "lastModified": 1768771445,
-        "narHash": "sha256-5fzIZJrnyAtS8gOZn5530f820u2WWeGwWDCpCFWaxpI=",
+        "lastModified": 1770046728,
+        "narHash": "sha256-pviARZwwwPCo+SCzGh29NBJ0brVQKLGY6iPyPxH8tK0=",
         "owner": "finistere",
         "repo": "neovim-flake",
-        "rev": "941d875f2bab9ef97b406552584e610d59d61740",
+        "rev": "01ebb746587dd516116e604d16a9205187564b6c",
         "type": "github"
       },
       "original": {
@@ -552,11 +552,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1768736227,
-        "narHash": "sha256-qgGq7CfrYKc3IBYQ7qp0Z/ZXndQVC5Bj0N8HW9mS2rM=",
+        "lastModified": 1769302137,
+        "narHash": "sha256-QEDtctEkOsbx8nlFh4yqPEOtr4tif6KTqWwJ37IM2ds=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "d447553bcbc6a178618d37e61648b19e744370df",
+        "rev": "a351494b0e35fd7c0b7a1aae82f0afddf4907aa8",
         "type": "github"
       },
       "original": {
@@ -693,11 +693,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1768564909,
-        "narHash": "sha256-Kell/SpJYVkHWMvnhqJz/8DqQg2b6PguxVWOuadbHCc=",
+        "lastModified": 1769789167,
+        "narHash": "sha256-kKB3bqYJU5nzYeIROI82Ef9VtTbu4uA3YydSk/Bioa8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e4bae1bd10c9c57b2cf517953ab70060a828ee6f",
+        "rev": "62c8382960464ceb98ea593cb8321a2cf8f9e3e5",
         "type": "github"
       },
       "original": {
@@ -708,11 +708,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1755186698,
-        "narHash": "sha256-wNO3+Ks2jZJ4nTHMuks+cxAiVBGNuEBXsT29Bz6HASo=",
+        "lastModified": 1767892417,
+        "narHash": "sha256-dhhvQY67aboBk8b0/u0XB6vwHdgbROZT3fJAjyNh5Ww=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fbcf476f790d8a217c3eab4e12033dc4a0f6d23c",
+        "rev": "3497aa5c9457a9d88d71fa93a4a8368816fbeeba",
         "type": "github"
       },
       "original": {
@@ -771,11 +771,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1755004716,
-        "narHash": "sha256-TbhPR5Fqw5LjAeI3/FOPhNNFQCF3cieKCJWWupeZmiA=",
+        "lastModified": 1768083390,
+        "narHash": "sha256-TGWPJq2mXwxfAe83iZ18DIqXC4sOSj7RkW9b59h6Ox4=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "b2a58b8c6eff3c3a2c8b5c70dbf69ead78284194",
+        "rev": "e42e8ff582ba12a88b6845525d08b6428e6d0fb9",
         "type": "github"
       },
       "original": {
@@ -819,11 +819,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1766582868,
-        "narHash": "sha256-MqxQI2rSfqdh0GkAmuUopGpQeuZ+EneM+vqVKDKG708=",
+        "lastModified": 1768119527,
+        "narHash": "sha256-tDBKNeZPyc04nJwLWdE//aQDl7C1QZiKpOxTkaknA60=",
         "owner": "lanastara_foss",
         "repo": "starship-jj",
-        "rev": "f0c5c9b64f60bfe25d0c73561ac435e93860f6e7",
+        "rev": "da7b88c8c78115ca84ce4160d99cefb6d2299d8a",
         "type": "gitlab"
       },
       "original": {

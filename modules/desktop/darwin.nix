@@ -48,6 +48,7 @@
       "gnu-sed" # for neovim plugin
       # https://github.com/FelixKratz/JankyBorders
       "borders"
+      "huggingface-cli"
     ];
     casks = [
       "google-chrome"
