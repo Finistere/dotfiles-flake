@@ -55,6 +55,7 @@
       "google-drive"
       "firefox"
       "keepassxc"
+      "qobuz"
       # "raycast" # Better Spotlight, it detects apps installed by nix-darwin
       "lunar" # Luminosity control
       "flux-app" # Blue light filter
@@ -69,6 +70,7 @@
       "docker-desktop"
       "notion"
       "1password"
+      "tailscale"
 
       # People
       "slack"

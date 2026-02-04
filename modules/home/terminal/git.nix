@@ -55,6 +55,11 @@
         ".direnv"
         ".jj"
         ".github"
+        ".devenv"
+        ".direnv"
+        "devenv.nix"
+        "devenv.lock"
+        "devenv.yaml"
       ];
     };
 
