@@ -70,7 +70,7 @@
       "docker-desktop"
       "notion"
       "1password"
-      "tailscale"
+      "tailscale-app"
 
       # People
       "slack"
@@ -82,6 +82,9 @@
 
       # Virtualization
       "utm"
+
+      "logseq"
+      "zotero@beta"
     ];
     taps = [
       # Aerospace

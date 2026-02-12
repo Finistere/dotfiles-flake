@@ -6,18 +6,22 @@
   ...
 }: {
   home = {
-    packages = with pkgs; [
-      ripgrep
-      tokei
-      htop
-      fd
-      dig
-      whois
-      erdtree
-      sd
-      claude-code
-      codex
-    ];
+    packages = with pkgs;
+      [
+        ripgrep
+        tokei
+        htop
+        fd
+        dig
+        whois
+        erdtree
+        sd
+      ]
+      ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+        claude-code
+        crush
+        codex
+      ]);
     file."erdtree" = {
       target = ".config/erdtree/.erdtree.toml";
       text = builtins.readFile ./.erdtree.toml;
@@ -44,6 +48,7 @@
 
     ssh = {
       enable = true;
+      enableDefaultConfig = false;
       matchBlocks = {
         "bach" = {
           extraOptions = {

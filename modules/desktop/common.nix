@@ -3,8 +3,7 @@
   inputs,
   me,
   ...
-}:
-{
+}: {
   networking = {inherit (me) hostName;};
   environment.shells = [pkgs.fish];
   environment.variables.SHELL = "${pkgs.fish}/bin/fish";
@@ -78,11 +77,4 @@
       };
     };
   };
-}
-// me.lib.ifDarwinOr {} {
-  homebrew.casks = [
-    "cryptomator"
-    "logseq"
-    "zotero@beta"
-  ];
 }

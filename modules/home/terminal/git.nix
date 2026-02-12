@@ -8,6 +8,15 @@
     packages = with pkgs; [
       tig
     ];
+    file."jj-zml" = {
+      target = ".config/jj/conf.d/zml.toml";
+      text = ''
+        --when.repositories = ["~/github/zml"]
+
+        [user]
+        email = "benjamin@zml.ai"
+      '';
+    };
   };
 
   programs = {
@@ -49,6 +58,15 @@
         fetch.pruneTags = true;
       };
 
+      includes = [
+        {
+          condition = "gitdir:~/github/zml/";
+          contents = {
+            user.email = "benjamin@zml.ai";
+          };
+        }
+      ];
+
       ignores = [
         ".envrc"
         ".ignore"
@@ -57,6 +75,7 @@
         ".github"
         ".devenv"
         ".direnv"
+        ".devenv.flake.nix"
         "devenv.nix"
         "devenv.lock"
         "devenv.yaml"

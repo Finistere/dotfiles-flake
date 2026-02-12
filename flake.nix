@@ -2,9 +2,12 @@
   description = "Benjamin's machines";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    neovim.url = "github:finistere/neovim-flake";
+    llm-agents.url = "github:numtide/llm-agents.nix";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     mac-app-util.url = "github:hraban/mac-app-util";
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,8 +24,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim.url = "github:finistere/neovim-flake";
-    starship-jj.url = "gitlab:lanastara_foss/starship-jj";
+    starship-jj = {
+      url = "gitlab:lanastara_foss/starship-jj";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # helix = {
     #   url = "github:helix-editor/helix";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -64,7 +69,7 @@
       theme = "tokyonight_moon";
       lib = rec {
         matchOs = cases:
-          if null == builtins.match ''^.*-darwin$'' system
+          if null == builtins.match "^.*-darwin$" system
           then cases.linux
           else cases.darwin;
         ifLinuxOr = default: value:
@@ -123,7 +128,7 @@
           [
             mac-app-util.darwinModules.default
             {
-      	      nixpkgs.config.allowUnfree = true;
+              nixpkgs.config.allowUnfree = true;
               system.primaryUser = me.userName;
               age.identityPaths = ["/etc/ssh/host_ed25519"];
             }
