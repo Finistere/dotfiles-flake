@@ -11,6 +11,13 @@
       };
     };
   };
+
+  homebrew = {
+    casks = [
+      "nvidia-nsight-systems"
+    ];
+  };
+
   # nix darwin cannot manage nix with Determinate System installer
   nix.enable = false;
 }

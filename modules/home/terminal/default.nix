@@ -21,6 +21,7 @@
         claude-code
         crush
         codex
+        opencode
       ]);
     file."erdtree" = {
       target = ".config/erdtree/.erdtree.toml";
