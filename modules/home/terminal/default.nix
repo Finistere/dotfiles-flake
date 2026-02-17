@@ -31,6 +31,10 @@
       target = ".config/starship-jj/starship-jj.toml";
       text = builtins.readFile ./starship-jj.toml;
     };
+    file."opencode" = {
+      target = ".config/opencode/opencode.json";
+      text = builtins.readFile ./opencode.json;
+    };
   };
 
   programs = {

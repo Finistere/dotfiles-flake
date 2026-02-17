@@ -73,12 +73,6 @@
         ".direnv"
         ".jj"
         ".github"
-        ".devenv"
-        ".direnv"
-        ".devenv.flake.nix"
-        "devenv.nix"
-        "devenv.lock"
-        "devenv.yaml"
       ];
     };
 

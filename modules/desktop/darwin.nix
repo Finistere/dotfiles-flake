@@ -13,6 +13,7 @@
     home = {
       packages = with pkgs; [
         colima
+        rsync
       ];
       file.".aerospace" = {
         source = ../home/.aerospace.toml;

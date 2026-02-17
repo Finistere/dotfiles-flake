@@ -15,6 +15,7 @@
   homebrew = {
     casks = [
       "nvidia-nsight-systems"
+      "chatwise"
     ];
   };
 
