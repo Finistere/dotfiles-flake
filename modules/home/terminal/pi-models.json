@@ -1,0 +1,10 @@
+{
+  "providers": {
+    "4090": {
+      "baseUrl": "http://9960x-4090x2:8001/v1",
+      "api": "openai-completions",
+      "apiKey": "4090",
+      "models": [{ "id": "llama" }]
+    }
+  }
+}

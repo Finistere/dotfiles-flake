@@ -6,5 +6,19 @@
       "~/.cache/bazel/_bazel_brabier/**": "allow",
       "/Users/brabier/Library/Caches/bazel/": "allow"
     }
+  },
+  "provider": {
+    "llama.cpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "4090",
+      "options": {
+        "baseURL": "http://9960x-4090x2:8001/v1"
+      },
+      "models": {
+        "llama": {
+          "name": "llama"
+        }
+      }
+    }
   }
 }

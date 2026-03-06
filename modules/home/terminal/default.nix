@@ -4,9 +4,11 @@
   inputs,
   system,
   ...
-}: {
+}:
+{
   home = {
-    packages = with pkgs;
+    packages =
+      with pkgs;
       [
         ripgrep
         tokei
@@ -21,6 +23,7 @@
         claude-code
         crush
         codex
+        pi
         opencode
       ]);
     file."erdtree" = {
@@ -35,6 +38,10 @@
       target = ".config/opencode/opencode.json";
       text = builtins.readFile ./opencode.json;
     };
+    file."pi-models" = {
+      target = ".pi/agent/models.json";
+      text = builtins.readFile ./pi-models.json;
+    };
   };
 
   programs = {
@@ -48,7 +55,7 @@
         style = "compact";
         search_mode = "skim";
       };
-      flags = ["--disable-up-arrow"];
+      flags = [ "--disable-up-arrow" ];
     };
 
     ssh = {
