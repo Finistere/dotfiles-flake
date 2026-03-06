@@ -73,6 +73,7 @@
         ".direnv"
         ".jj"
         ".github"
+        "opencode.json"
       ];
     };
 
