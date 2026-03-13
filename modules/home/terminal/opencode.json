@@ -15,8 +15,11 @@
         "baseURL": "http://9960x-4090x2:8001/v1"
       },
       "models": {
-        "llama": {
-          "name": "llama"
+        "/var/models/Qwen/Qwen3-4B-Instruct-2507/": {
+          "name": "/var/models/Qwen/Qwen3-4B-Instruct-2507/"
+        },
+        "/var/models/liquidai/LFM2.5-1.2B-Instruct/": {
+          "name": "/var/models/liquidai/LFM2.5-1.2B-Instruct/"
         }
       }
     }
