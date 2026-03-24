@@ -37,6 +37,7 @@
             vale
             graphviz
             devenv
+            poppler-utils # pdftotext
           ]
           ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator]);
         # Used for neovim
