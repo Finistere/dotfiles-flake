@@ -78,6 +78,7 @@
       "notion"
       "1password"
       "tailscale-app"
+      "wireshark-app"
 
       # People
       "slack"
