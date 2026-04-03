@@ -20,9 +20,15 @@
         target = ".aerospace.toml";
       };
     };
-    programs.ssh.matchBlocks."*".extraOptions = {
-      AddKeysToAgent = "yes";
-      UseKeychain = "yes";
+    programs.ssh.matchBlocks."*" = {
+      serverAliveInterval = 60;
+      serverAliveCountMax = 5;
+      extraOptions = {
+        # For mosh
+        IgnoreUnknown = "UseKeychain";
+        AddKeysToAgent = "yes";
+        UseKeychain = "yes";
+      };
     };
   };
   system.defaults = {

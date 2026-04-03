@@ -1,29 +1,40 @@
-{ me, ... }:
-{
+{me, ...}: let
+  matchBlocks = builtins.listToAttrs (
+    map
+    (name: {
+      inherit name;
+      value = {
+        forwardAgent = true;
+      };
+    })
+    [
+      "9960x-4090x2"
+      "9960x-5090x2"
+      "9950x-tt"
+      "9950x-radeon-pro"
+    ]
+  );
+
+  vscodeMatchBlocks = builtins.listToAttrs (
+    map (name: {
+      name = "vscode.${name}";
+      value =
+        matchBlocks.${name}
+        // {
+          hostname = name;
+          extraOptions = {
+            RemoteCommand = "/usr/bin/bash";
+          };
+        };
+    }) (builtins.attrNames matchBlocks)
+  );
+in {
   system.stateVersion = 6;
   home-manager.users.${me.userName} = {
     home.stateVersion = "26.05";
-    programs.ssh.matchBlocks = {
-      "9960x-4090x2" = {
-        forwardAgent = true;
-      };
-      "9960x-5090x2" = {
-        forwardAgent = true;
-      };
-      "vscode.9960x-4090x2" = {
-        forwardAgent = true;
-        hostname = "9960x-4090x2";
-        extraOptions = {
-          RemoteCommand = "/usr/bin/bash";
-        };
-      };
-      "vscode.9960x-5090x2" = {
-        forwardAgent = true;
-        hostname = "9960x-5090x2";
-        extraOptions = {
-          RemoteCommand = "/usr/bin/bash";
-        };
-      };
+    programs.ssh = {
+      includes = ["~/.sky/generated/ssh/*"];
+      matchBlocks = matchBlocks // vscodeMatchBlocks;
     };
   };
 
