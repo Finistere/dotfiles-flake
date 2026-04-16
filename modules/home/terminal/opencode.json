@@ -12,7 +12,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "4090",
       "options": {
-        "baseURL": "http://9960x-4090x2:8001/v1"
+        "baseURL": "http://89.169.120.90:8001/v1"
       },
       "models": {
         "/var/models/Qwen/Qwen3-4B-Instruct-2507/": {

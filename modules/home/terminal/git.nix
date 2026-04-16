@@ -3,7 +3,8 @@
   inputs,
   system,
   ...
-}: {
+}:
+{
   home = {
     packages = with pkgs; [
       tig
@@ -11,7 +12,7 @@
     file."jj-zml" = {
       target = ".config/jj/conf.d/zml.toml";
       text = ''
-        --when.repositories = ["~/github/zml"]
+        --when.repositories = ["~/github/zml", "~/github/zml2", "~/github/iree-org"]
 
         [user]
         email = "benjamin@zml.ai"
@@ -65,6 +66,18 @@
             user.email = "benjamin@zml.ai";
           };
         }
+        {
+          condition = "gitdir:~/github/iree-org/";
+          contents = {
+            user.email = "benjamin@zml.ai";
+          };
+        }
+        {
+          condition = "gitdir:~/github/zml2/";
+          contents = {
+            user.email = "benjamin@zml.ai";
+          };
+        }
       ];
 
       ignores = [
@@ -92,22 +105,17 @@
           editor = "vi";
           diff-editor = "diffview";
         };
+        revsets.bookmark-advance-to = "@-";
         aliases = {
-          d = ["diff"];
-          s = ["show"];
+          d = [ "diff" ];
+          s = [ "show" ];
           f = [
             "git"
             "fetch"
           ];
-          # Find the closest ancestor with a bookmark pointing at it, and move it to the
-          # parent of the working copy.
-          tug = [
+          a = [
             "bookmark"
-            "move"
-            "--from"
-            "heads(::@- & bookmarks())"
-            "--to"
-            "@-"
+            "advance"
           ];
         };
         merge-tools = {
@@ -144,7 +152,7 @@
               "$output"
               "--fast"
             ];
-            merge-conflict-exit-codes = [1];
+            merge-conflict-exit-codes = [ 1 ];
             conflict-marker-style = "git";
           };
         };
