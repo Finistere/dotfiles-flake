@@ -45,7 +45,7 @@
       enable = true;
       settings = {
         user.name = "Benjamin Rabier";
-        user.email = "benjamin+git@rabier.dev";
+        user.email = "benjamin@rabier.dev";
         push.default = "current";
         pull.ff = "only";
         merge.conflictstyle = "zdiff3";
@@ -93,7 +93,7 @@
       enable = true;
       settings = {
         user.name = "Benjamin Rabier";
-        user.email = "benjamin+git@rabier.dev";
+        user.email = "benjamin@rabier.dev";
         templates.git_push_bookmark = "\"brabier/\" ++ change_id.short()";
         ui = {
           diff-formatter = [

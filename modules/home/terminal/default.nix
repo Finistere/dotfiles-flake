@@ -138,6 +138,11 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+      package = pkgs.direnv.overrideAttrs (oldAttrs: {
+        # https://github.com/NixOS/nixpkgs/issues/507531
+        # Prevents darwin from hanging
+        doCheck = false;
+      });
     };
 
     zoxide.enable = true;
