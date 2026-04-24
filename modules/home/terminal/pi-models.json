@@ -3,17 +3,23 @@
     "4090": {
       "baseUrl": "http://9960x-4090x2:8001/v1",
       "api": "openai-completions",
-      "apiKey": "4090",
-      "models": [{ "id": "llama" }]
+      "apiKey": "XXX",
+      "models": [{ "id": "4090" }]
     },
-    "skyv1": {
-      "baseUrl": "http://89.169.120.90:8001/v1",
+    "5090": {
+      "baseUrl": "http://9960x-5090x2:8001/v1",
       "api": "openai-completions",
-      "apiKey": "sky",
-      "models": [{ "id": "llama" }]
+      "apiKey": "XXX",
+      "models": [{ "id": "5090" }]
+    },
+    "mi300x-dell": {
+      "baseUrl": "http://mi300x-dell:8001/v1",
+      "api": "openai-completions",
+      "apiKey": "XXX",
+      "models": [{ "id": "mi300x-dell" }]
     },
     "sky": {
-      "baseUrl": "http://89.169.120.90:8001",
+      "baseUrl": "http://89.169.99.228:8001",
       "api": "openai-completions",
       "apiKey": "sky",
       "models": [{ "id": "llama" }]
