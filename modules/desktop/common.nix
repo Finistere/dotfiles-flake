@@ -3,9 +3,10 @@
   inputs,
   me,
   ...
-}: {
-  networking = {inherit (me) hostName;};
-  environment.shells = [pkgs.fish];
+}:
+{
+  networking = { inherit (me) hostName; };
+  environment.shells = [ pkgs.fish ];
   environment.variables.SHELL = "${pkgs.fish}/bin/fish";
   programs.fish.enable = true;
   users.users.${me.userName}.shell = pkgs.fish;
@@ -32,15 +33,16 @@
         ../home/terminal/editor.nix
       ];
       home = {
-        packages = with pkgs;
+        packages =
+          with pkgs;
           [
             vale
             graphviz
             devenv
             poppler-utils # pdftotext
-            mosh
+            librsvg # svg -> png
           ]
-          ++ me.lib.ifLinuxOr [] (with pkgs; [cryptomator]);
+          ++ me.lib.ifLinuxOr [ ] (with pkgs; [ cryptomator ]);
         # Used for neovim
         file.".vale.ini".text = ''
           StylesPath = .vale-styles
@@ -67,16 +69,18 @@
         };
       };
 
-      programs.kitty = let
-        themes = {
-          tokyonight_moon = builtins.readFile (
-            pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf"
-          );
+      programs.kitty =
+        let
+          themes = {
+            tokyonight_moon = builtins.readFile (
+              pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf"
+            );
+          };
+        in
+        {
+          enable = true;
+          extraConfig = builtins.readFile ../home/kitty.conf + themes.${me.theme};
         };
-      in {
-        enable = true;
-        extraConfig = builtins.readFile ../home/kitty.conf + themes.${me.theme};
-      };
     };
   };
 }

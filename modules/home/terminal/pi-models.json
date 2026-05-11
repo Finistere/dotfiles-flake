@@ -19,10 +19,10 @@
       "models": [{ "id": "mi300x-dell" }]
     },
     "sky": {
-      "baseUrl": "http://89.169.99.228:8001",
+      "baseUrl": "http://89.169.102.185:8001/v1",
       "api": "openai-completions",
       "apiKey": "sky",
-      "models": [{ "id": "llama" }]
+      "models": [{ "id": "gpt-5.1" }]
     }
   }
 }

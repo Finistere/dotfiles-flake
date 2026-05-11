@@ -2,7 +2,8 @@
   pkgs,
   me,
   ...
-}: {
+}:
+{
   imports = [
     ./common.nix
   ];
@@ -79,6 +80,7 @@
       "1password"
       "tailscale-app"
       "wireshark-app"
+      "codex-app"
 
       # People
       "slack"
