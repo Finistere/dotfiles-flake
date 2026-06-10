@@ -21,15 +21,13 @@
         target = ".aerospace.toml";
       };
     };
-    programs.ssh.matchBlocks."*" = {
-      serverAliveInterval = 60;
-      serverAliveCountMax = 5;
-      extraOptions = {
-        # For mosh
-        IgnoreUnknown = "UseKeychain";
-        AddKeysToAgent = "yes";
-        UseKeychain = "yes";
-      };
+    programs.ssh.settings."*" = {
+      ServerAliveInterval = 60;
+      ServerAliveCountMax = 5;
+      # For mosh
+      IgnoreUnknown = "UseKeychain";
+      AddKeysToAgent = "yes";
+      UseKeychain = "yes";
     };
   };
   system.defaults = {
@@ -47,6 +45,9 @@
     onActivation = {
       cleanup = "zap";
       autoUpdate = true;
+      extraFlags = [
+        "--force-cleanup"
+      ];
     };
     masApps = {
       Xcode = 497799835;

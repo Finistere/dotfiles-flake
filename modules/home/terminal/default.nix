@@ -38,10 +38,6 @@
       target = ".config/opencode/opencode.json";
       text = builtins.readFile ./opencode.json;
     };
-    file."pi-models" = {
-      target = ".pi/agent/models.json";
-      text = builtins.readFile ./pi-models.json;
-    };
   };
 
   programs = {
@@ -61,23 +57,19 @@
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "bach" = {
-          extraOptions = {
-            HostName = "192.168.1.17";
-          };
+          HostName = "192.168.1.17";
         };
         "bruckner" = {
-          extraOptions = {
-            HostName = "192.168.1.19";
-          };
+          HostName = "192.168.1.19";
         };
         "*compute.amazonaws.com" = {
-          extraOptions = {
-            User = "ec2-user";
-            SetEnv = "TERM=vt100";
-            IdentityFile = "~/.ssh/id_ed25519.pem";
+          User = "ec2-user";
+          SetEnv = {
+            TERM = "vt100";
           };
+          IdentityFile = "~/.ssh/id_ed25519.pem";
         };
       };
     };
