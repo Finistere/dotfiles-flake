@@ -9,51 +9,15 @@
     }
   },
   "provider": {
-    "zml-4090": {
+    "local": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "zml-4090",
+      "name": "local",
       "options": {
-        "baseURL": "http://9960x-4090x2:8001/v1"
+        "baseURL": "http://localhost:8081/v1"
       },
       "models": {
         "/var/models/Qwen/Qwen3-4B-Instruct-2507/": {
-          "name": "zml-4090"
-        }
-      }
-    },
-    "zml-5090": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "zml-5090",
-      "options": {
-        "baseURL": "http://9960x-5090x2:8001/v1"
-      },
-      "models": {
-        "zml-5090": {
-          "name": "zml-5090"
-        }
-      }
-    },
-    "zml-mi300": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "zml-mi300",
-      "options": {
-        "baseURL": "http://mi300x-dell:8001/v1"
-      },
-      "models": {
-        "zml-mi300": {
-          "name": "zml-mi300"
-        }
-      }
-    },
-    "sky": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "sky",
-      "options": {
-        "baseURL": "http://89.169.99.228:8001/v1"
-      },
-      "models": {
-        "sky": {
-          "name": "sky"
+          "name": "local"
         }
       }
     }

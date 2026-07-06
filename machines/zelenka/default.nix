@@ -1,25 +1,29 @@
-{me, ...}: let
+{ me, ... }:
+let
   settings = builtins.listToAttrs (
     map
-    (name: {
-      inherit name;
-      value = {
-        ForwardAgent = true;
-      };
-    })
-    [
-      "9960x-4090x2"
-      "9960x-5090x2"
-      "9950x-tt"
-      "9950x-radeon-pro"
-    ]
+      (name: {
+        inherit name;
+        value = {
+          ForwardAgent = true;
+        };
+      })
+      [
+        "9960x-4090x2"
+        "9960x-5090x2"
+        "9960x-b70x2"
+        "9985wx-5090x4"
+        "9950x-tt"
+        "9950x-radeon-pro"
+      ]
   );
-in {
+in
+{
   system.stateVersion = 6;
   home-manager.users.${me.userName} = {
     home.stateVersion = "26.05";
     programs.ssh = {
-      includes = ["~/.sky/generated/ssh/*"];
+      includes = [ "~/.sky/generated/ssh/*" ];
       inherit settings;
     };
   };
