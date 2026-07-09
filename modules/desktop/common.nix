@@ -61,26 +61,27 @@
           # '';
         };
       };
-
-      programs.btop = {
-        enable = true;
-        settings = {
-          color_theme = "tokyo-night";
-        };
-      };
-
-      programs.kitty =
-        let
-          themes = {
-            tokyonight_moon = builtins.readFile (
-              pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf"
-            );
-          };
-        in
-        {
+      programs = {
+        btop = {
           enable = true;
-          extraConfig = builtins.readFile ../home/kitty.conf + themes.${me.theme};
+          settings = {
+            color_theme = "tokyo-night";
+          };
         };
+
+        kitty =
+          let
+            themes = {
+              tokyonight_moon = builtins.readFile (
+                pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf"
+              );
+            };
+          in
+          {
+            enable = true;
+            extraConfig = builtins.readFile ../home/kitty.conf + themes.${me.theme};
+          };
+      };
     };
   };
 }

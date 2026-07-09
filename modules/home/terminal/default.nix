@@ -44,6 +44,7 @@
     eza.enable = true;
     skim.enable = true;
     fzf.enable = true;
+    fzf.historyWidget.command = "";
 
     atuin = {
       enable = true;
