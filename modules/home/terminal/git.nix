@@ -8,6 +8,7 @@
   home = {
     packages = with pkgs; [
       tig
+      lazyjj
     ];
     file."jj-zml" = {
       target = ".config/jj/conf.d/zml.toml";
@@ -30,14 +31,28 @@
     gh.enable = true;
 
     difftastic = {
-      enable = true;
-      git.enable = true;
+      enable = false;
+      git.enable = false;
     };
 
     delta = {
-      enable = false;
+      enable = true;
+      enableGitIntegration = true;
+      enableJujutsuIntegration = true;
       options = {
         features = "decorations navigate";
+        true-color = "always";
+
+        max-line-distance = "0.8";
+        line-buffer-size = "64";
+
+        # minus-style = "syntax #3b1f2b";
+        # minus-non-emph-style = "syntax #3b1f2b";
+        # minus-emph-style = "white bold ul #7f1d1d";
+        #
+        # plus-style = "syntax #163c2d";
+        # plus-non-emph-style = "syntax #163c2d";
+        # plus-emph-style = "white bold ul #166534";
       };
     };
 
@@ -54,9 +69,18 @@
         alias.fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup";
         init.defaultBranch = "main";
         rerere.enabled = true;
-        diff.algorithm = "histogram";
-        feth.prune = true;
-        fetch.pruneTags = true;
+        diff = {
+          algorithm = "histogram";
+        };
+        fetch = {
+          prune = true;
+          pruneTags = true;
+        };
+
+        difftool = {
+          prompt = false;
+          trustExitCode = true;
+        };
       };
 
       includes = [
@@ -96,14 +120,17 @@
         user.email = "benjamin@rabier.dev";
         templates.git_push_bookmark = "\"brabier/\" ++ change_id.short()";
         ui = {
-          diff-formatter = [
-            "difft"
-            "--color=always"
-            "$left"
-            "$right"
-          ];
+          # diff-formatter = [
+          #   "difft"
+          #   "--color=always"
+          #   "$left"
+          #   "$right"
+          # ];
           editor = "vi";
           diff-editor = "diffview";
+        };
+        lazyjj = {
+          diff-tool = "delta-b";
         };
         revsets.bookmark-advance-to = "@-";
         aliases = {
@@ -154,6 +181,28 @@
             ];
             merge-conflict-exit-codes = [ 1 ];
             conflict-marker-style = "git";
+          };
+          "delta-b" = {
+            program = "bash";
+            diff-args = [
+              "-o"
+              "pipefail"
+              "-c"
+              ''
+                git --no-pager diff --no-index \
+                  --ignore-space-change \
+                  --color=always \
+                  -- "$1" "$2" |
+                  delta --paging=never
+              ''
+              "delta-b"
+              "$left"
+              "$right"
+            ];
+            diff-expected-exit-codes = [
+              0
+              1
+            ];
           };
         };
       };

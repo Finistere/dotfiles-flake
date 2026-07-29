@@ -56,7 +56,10 @@
       "coreutils"
       "gnu-sed" # for neovim plugin
       # https://github.com/FelixKratz/JankyBorders
-      "borders"
+      {
+        name = "borders";
+        trusted = true;
+      }
       "huggingface-cli"
     ];
     casks = [
