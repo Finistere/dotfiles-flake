@@ -30,11 +30,6 @@
 
     gh.enable = true;
 
-    difftastic = {
-      enable = false;
-      git.enable = false;
-    };
-
     delta = {
       enable = true;
       enableGitIntegration = true;
@@ -45,14 +40,6 @@
 
         max-line-distance = "0.8";
         line-buffer-size = "64";
-
-        # minus-style = "syntax #3b1f2b";
-        # minus-non-emph-style = "syntax #3b1f2b";
-        # minus-emph-style = "white bold ul #7f1d1d";
-        #
-        # plus-style = "syntax #163c2d";
-        # plus-non-emph-style = "syntax #163c2d";
-        # plus-emph-style = "white bold ul #166534";
       };
     };
 
@@ -120,12 +107,6 @@
         user.email = "benjamin@rabier.dev";
         templates.git_push_bookmark = "\"brabier/\" ++ change_id.short()";
         ui = {
-          # diff-formatter = [
-          #   "difft"
-          #   "--color=always"
-          #   "$left"
-          #   "$right"
-          # ];
           editor = "vi";
           diff-editor = "diffview";
         };
