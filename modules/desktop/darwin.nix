@@ -57,7 +57,7 @@
       "gnu-sed" # for neovim plugin
       # https://github.com/FelixKratz/JankyBorders
       {
-        name = "borders";
+        name = "felixkratz/formulae/borders";
         trusted = true;
       }
       "huggingface-cli"
@@ -93,6 +93,7 @@
       "telegram"
       "zoom"
       "signal"
+      "microsoft-teams"
 
       # Virtualization
       "utm"

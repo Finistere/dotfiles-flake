@@ -37,6 +37,7 @@
       options = {
         features = "decorations navigate";
         true-color = "always";
+        pager = "less -R -+F";
 
         max-line-distance = "0.8";
         line-buffer-size = "64";
