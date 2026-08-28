@@ -4,9 +4,11 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     neovim.url = "github:finistere/neovim-flake";
     llm-agents.url = "github:numtide/llm-agents.nix";
-    flake-utils.url = "github:numtide/flake-utils";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     mac-app-util.url = "github:hraban/mac-app-util";
+    tokyonight-nvim = {
+      url = "github:folke/tokyonight.nvim";
+      flake = false;
+    };
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -28,109 +30,83 @@
       url = "gitlab:lanastara_foss/starship-jj";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # helix = {
-    #   url = "github:helix-editor/helix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.flake-utils.follows = "flake-utils";
-    # };
   };
-  outputs = {
-    self,
-    nixpkgs,
-    darwin,
-    home-manager,
-    agenix,
-    flake-utils,
-    mac-app-util,
-    nix-index-database,
-    ...
-  } @ inputs: let
-    nixConfig = _: {
-      nixpkgs.config.allowUnfree = true;
-      nix = {
-        registry.nixpkgs.flake = inputs.nixpkgs;
-        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-        optimise.automatic = true;
-        settings = {
-          experimental-features = [
-            "nix-command"
-            "flakes"
-          ];
-        };
-        extraOptions = ''
-          trusted-users = root brabier
-        '';
-      };
-    };
-    mkMe = hostName: system: {
-      inherit hostName system;
-      userName = "brabier";
-      publicKeys = import ./public-keys.nix;
-      theme = "tokyonight_moon";
-      lib = rec {
-        matchOs = cases:
-          if null == builtins.match "^.*-darwin$" system
-          then cases.linux
-          else cases.darwin;
-        ifLinuxOr = default: value:
-          matchOs {
-            linux = value;
-            darwin = default;
+  outputs =
+    {
+      nixpkgs,
+      darwin,
+      home-manager,
+      agenix,
+      mac-app-util,
+      nix-index-database,
+      ...
+    }@inputs:
+    let
+      systems = [
+        "aarch64-darwin"
+        "x86_64-linux"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+      nixConfig = _: {
+        nixpkgs.config.allowUnfree = true;
+        nix = {
+          registry.nixpkgs.flake = inputs.nixpkgs;
+          nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+          optimise.automatic = true;
+          settings = {
+            experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
+            trusted-users = [
+              "root"
+              "brabier"
+            ];
           };
-        ifDarwinOr = default: value:
-          matchOs {
-            linux = default;
-            darwin = value;
+        };
+      };
+      mkMe = hostName: system: {
+        inherit hostName system;
+        userName = "brabier";
+        publicKeys = import ./public-keys.nix;
+        theme = "tokyonight_moon";
+        lib = rec {
+          matchOs = cases: if null == builtins.match "^.*-darwin$" system then cases.linux else cases.darwin;
+          ifLinuxOr =
+            default: value:
+            matchOs {
+              linux = value;
+              darwin = default;
+            };
+          ifDarwinOr =
+            default: value:
+            matchOs {
+              linux = default;
+              darwin = value;
+            };
+        };
+      };
+      mkDarwin =
+        {
+          hostName,
+          manageNix ? true,
+          extraModules ? [ ],
+        }:
+        let
+          system = "aarch64-darwin";
+          me = mkMe hostName system;
+        in
+        darwin.lib.darwinSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs me;
           };
-      };
-    };
-    darwinSystem = hostName: extraModules: let
-      system = "aarch64-darwin";
-      me = mkMe hostName system;
-    in {
-      darwinConfigurations.${hostName} = darwin.lib.darwinSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs me;
-        };
-        modules =
-          [
-            nixConfig
-            mac-app-util.darwinModules.default
-            {
-              system.primaryUser = me.userName;
-              age.identityPaths = ["/etc/ssh/host_ed25519"];
-            }
-            # Debug agenix with:
-            # sudo launchctl debug system/org.nixos.activate-agenix --stdout --stderr
-            agenix.darwinModules.default
-            home-manager.darwinModules.home-manager
-            ./machines/${hostName}
-            {
-              home-manager.users.${me.userName}.imports = [
-                mac-app-util.homeManagerModules.default
-              ];
-            }
-          ]
-          ++ extraModules;
-      };
-    };
-    darwinDeterminateSystem = hostName: extraModules: let
-      system = "aarch64-darwin";
-      me = mkMe hostName system;
-    in {
-      darwinConfigurations.${hostName} = darwin.lib.darwinSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs me;
-        };
-        modules =
-          [
+          modules = [
             mac-app-util.darwinModules.default
             {
               nixpkgs.config.allowUnfree = true;
               system.primaryUser = me.userName;
-              age.identityPaths = ["/etc/ssh/host_ed25519"];
+              age.identityPaths = [ "/etc/ssh/host_ed25519" ];
             }
             # Debug agenix with:
             # sudo launchctl debug system/org.nixos.activate-agenix --stdout --stderr
@@ -143,82 +119,67 @@
               ];
             }
           ]
+          ++ nixpkgs.lib.optional manageNix nixConfig
           ++ extraModules;
-      };
-    };
-    nixosSystem = hostName: extraModules: let
-      system = "x86_64-linux";
-      me = mkMe hostName system;
-    in {
-      nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs me;
         };
-        modules =
-          [
+      mkNixos =
+        hostName: extraModules:
+        let
+          system = "x86_64-linux";
+          me = mkMe hostName system;
+        in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs me;
+          };
+          modules = [
             nixConfig
             agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             ./machines/${hostName}
             nix-index-database.nixosModules.nix-index
-            {programs.command-not-found.enable = false;}
+            { programs.command-not-found.enable = false; }
           ]
           ++ extraModules;
+        };
+    in
+    {
+      darwinConfigurations = {
+        stravinsky = mkDarwin {
+          hostName = "stravinsky";
+          extraModules = [ ./modules/desktop/darwin.nix ];
+        };
+        zelenka = mkDarwin {
+          hostName = "zelenka";
+          manageNix = false;
+          extraModules = [ ./modules/desktop/darwin.nix ];
+        };
       };
-    };
-    # https://stackoverflow.com/questions/54504685/nix-function-to-merge-attributes-records-recursively-and-concatenate-arrays
-    recursiveMerge = attrList:
-      with nixpkgs.lib; let
-        f = attrPath:
-          zipAttrsWith (
-            n: values:
-              if tail values == []
-              then head values
-              else if all isList values
-              then unique (concatLists values)
-              else if all isAttrs values
-              then f (attrPath ++ [n]) values
-              else last values
-          );
-      in
-        f [] attrList;
-  in
-    # Systems
-    (recursiveMerge [
-      (darwinDeterminateSystem "zelenka" [
-        ./modules/desktop/darwin.nix
-      ])
-      (darwinSystem "stravinsky" [
-        ./modules/desktop/darwin.nix
-      ])
-      (nixosSystem "bach" [
-        ./modules/desktop/nixos
-      ])
-      (nixosSystem "bruckner" [
+      nixosConfigurations.bruckner = mkNixos "bruckner" [
         ./modules/desktop/nixos
         ./modules/desktop/nixos/dev.nix
         ./modules/desktop/nixos/gaming.nix
-      ])
-    ])
-    # Shells
-    // flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
-      in {
-        devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            agenix.packages.${system}.default
-          ];
-        };
-      }
-    )
-    // {
+      ];
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+          };
+        in
+        {
+          default = pkgs.mkShell {
+            nativeBuildInputs = with pkgs; [
+              agenix.packages.${system}.default
+            ];
+          };
+        }
+      );
       apps.aarch64-darwin.darwin-rebuild = {
         type = "app";
         program = "${darwin.packages.aarch64-darwin.darwin-rebuild}/bin/darwin-rebuild";
+        meta.description = "Rebuild a nix-darwin system";
       };
     };
 }

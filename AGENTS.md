@@ -6,7 +6,7 @@ This repo is a Nix flake that defines NixOS and nix-darwin system configurations
 ## Repository structure
 - `flake.nix`: Flake inputs/outputs, system constructors, shared `me` context.
 - `machines/`: Per-host configurations.
-  - `machines/bach/`, `machines/bruckner/`, `machines/stravinsky/`, `machines/zelenka/`
+  - `machines/bruckner/`, `machines/stravinsky/`, `machines/zelenka/`
 - `modules/desktop/`: OS-level modules.
   - `common.nix` shared settings
   - `darwin.nix` macOS (nix-darwin) additions
@@ -19,8 +19,8 @@ This repo is a Nix flake that defines NixOS and nix-darwin system configurations
 
 ## Key entry points
 - `flake.nix` defines:
-  - `darwinSystem` and `darwinDeterminateSystem` for macOS
-  - `nixosSystem` for Linux
+  - `mkDarwin` for macOS
+  - `mkNixos` for Linux
   - `me` context (hostName, system, userName, theme, helper lib)
 - `machines/<host>/default.nix` imports host-specific hardware and modules.
 - `modules/desktop/common.nix` wires home-manager and shared packages.

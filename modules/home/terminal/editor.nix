@@ -2,9 +2,9 @@
   pkgs,
   inputs,
   system,
-  me,
   ...
-}: {
+}:
+{
   home = {
     sessionVariables = {
       EDITOR = "vi";

@@ -1,9 +1,9 @@
 {
   pkgs,
-  config,
   me,
   ...
-}: {
+}:
+{
   boot.kernel.sysctl = {
     "kernel.perf_event_paranoid" = 1;
     "kernel.kptr_restrict" = 0;
@@ -11,7 +11,7 @@
   environment.systemPackages = [
     # https://github.com/NixOS/nixpkgs/issues/282983
     # (linuxKernel.packagesFor (linuxKernel.kernels.linux_6_7.override {stdenv = gcc12Stdenv; buildPackages = pkgs.buildPackages // { stdenv = gcc12Stdenv;};})).perf
-    config.boot.kernelPackages.perf
+    pkgs.perf
   ];
 
   # KVM
@@ -32,8 +32,8 @@
   home-manager.users.${me.userName} = {
     dconf.settings = {
       "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
+        autoconnect = [ "qemu:///system" ];
+        uris = [ "qemu:///system" ];
       };
     };
     home.packages = with pkgs; [

@@ -2,12 +2,12 @@
   pkgs,
   me,
   ...
-}: {
+}:
+{
   imports = [
     ../common.nix
     ./sound.nix
     ./kde.nix
-    ./gaming.nix
   ];
 
   virtualisation.docker.enable = true;
@@ -55,12 +55,15 @@
 
   home-manager.users.${me.userName} = {
     home = {
-      packages = with pkgs; [google-chrome];
+      packages = with pkgs; [ google-chrome ];
     };
-    programs.firefox.enable = true;
+    programs.firefox = {
+      enable = true;
+      configPath = ".mozilla/firefox";
+    };
     programs.keychain = {
       enable = true;
-      keys = ["id_ed25519"];
+      keys = [ "id_ed25519" ];
       extraFlags = [
         "--quiet"
         "--nogui"

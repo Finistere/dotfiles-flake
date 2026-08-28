@@ -1,7 +1,5 @@
 {
   pkgs,
-  inputs,
-  system,
   ...
 }:
 {
@@ -25,8 +23,6 @@
     fish.shellAliases = {
       gs = "git status";
     };
-
-    mergiraf.enable = true;
 
     gh.enable = true;
 
@@ -149,20 +145,6 @@
                 git -C "$right" clean -q -df # remove untracked files
               ''
             ];
-          };
-          mergiraf = {
-            program = "mergiraf";
-            merge-args = [
-              "merge"
-              "$base"
-              "$left"
-              "$right"
-              "-o"
-              "$output"
-              "--fast"
-            ];
-            merge-conflict-exit-codes = [ 1 ];
-            conflict-marker-style = "git";
           };
           "delta-b" = {
             program = "bash";

@@ -5,9 +5,9 @@
   lib,
   pkgs,
   modulesPath,
-  config,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -22,7 +22,7 @@
     kernelParams = [
       "amd_pstate=guided"
     ];
-    extraModulePackages = [pkgs.perf];
+    extraModulePackages = [ ];
 
     initrd = {
       availableKernelModules = [
@@ -54,7 +54,7 @@
   };
   # powerManagement.cpuFreqGovernor = "schedutil";
 
-  services.xserver.videoDrivers = ["amdgpu"];
+  services.xserver.videoDrivers = [ "amdgpu" ];
   hardware = {
     cpu.amd.updateMicrocode = true;
     amdgpu.opencl.enable = true;
@@ -93,7 +93,7 @@
   #   fsType = "ext4";
   # };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

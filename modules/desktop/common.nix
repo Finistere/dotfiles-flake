@@ -72,9 +72,7 @@
         kitty =
           let
             themes = {
-              tokyonight_moon = builtins.readFile (
-                pkgs.vimPlugins.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf"
-              );
+              tokyonight_moon = builtins.readFile (inputs.tokyonight-nvim + "/extras/kitty/tokyonight_moon.conf");
             };
           in
           {

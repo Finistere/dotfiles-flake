@@ -26,17 +26,19 @@
         pi
         opencode
       ]);
-    file."erdtree" = {
-      target = ".config/erdtree/.erdtree.toml";
-      text = builtins.readFile ./.erdtree.toml;
-    };
-    file."starship-jj" = {
-      target = ".config/starship-jj/starship-jj.toml";
-      text = builtins.readFile ./starship-jj.toml;
-    };
-    file."opencode" = {
-      target = ".config/opencode/opencode.json";
-      text = builtins.readFile ./opencode.json;
+    file = {
+      "erdtree" = {
+        target = ".config/erdtree/.erdtree.toml";
+        text = builtins.readFile ./.erdtree.toml;
+      };
+      "starship-jj" = {
+        target = ".config/starship-jj/starship-jj.toml";
+        text = builtins.readFile ./starship-jj.toml;
+      };
+      "opencode" = {
+        target = ".config/opencode/opencode.json";
+        text = builtins.readFile ./opencode.json;
+      };
     };
   };
 
@@ -59,9 +61,6 @@
       enable = true;
       enableDefaultConfig = false;
       settings = {
-        "bach" = {
-          HostName = "192.168.1.17";
-        };
         "bruckner" = {
           HostName = "192.168.1.19";
         };
@@ -131,7 +130,7 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-      package = pkgs.direnv.overrideAttrs (oldAttrs: {
+      package = pkgs.direnv.overrideAttrs (_: {
         # https://github.com/NixOS/nixpkgs/issues/507531
         # Prevents darwin from hanging
         doCheck = false;
@@ -155,7 +154,7 @@
       };
       themes = {
         tokyonight_moon = {
-          src = pkgs.vimPlugins.tokyonight-nvim + "/extras/sublime";
+          src = inputs.tokyonight-nvim + "/extras/sublime";
           file = "tokyonight_moon.tmTheme";
         };
       };
