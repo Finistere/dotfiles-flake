@@ -37,7 +37,31 @@ in
 {
   system.stateVersion = 6;
   home-manager.users.${me.userName} = {
-    home.stateVersion = "26.05";
+    home = {
+      stateVersion = "26.05";
+      file.".colima/nvim-builder/colima.yaml".text = ''
+        cpu: 4
+        memory: 4
+        disk: 30
+        arch: aarch64
+        runtime: docker
+        autoActivate: false
+
+        kubernetes:
+          enabled: false
+
+        network:
+          address: false
+          mode: shared
+
+        forwardAgent: false
+        vmType: vz
+        rosetta: true
+        binfmt: true
+        mountType: virtiofs
+        sshConfig: false
+      '';
+    };
     programs.ssh = {
       includes = [ "~/.sky/generated/ssh/*" ];
       inherit settings;
