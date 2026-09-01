@@ -320,11 +320,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1787953140,
-        "narHash": "sha256-fxjr7oA79xDsFFjUvb4XZZ1dotEd4LkMe06SrPAyr74=",
+        "lastModified": 1787954173,
+        "narHash": "sha256-TYtELFVfZQ4omjkkC6krFeofjM1xj//Q6XpSiho2lII=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "f3b53afe96b0452fc2c43ef0c23ef7af1b6ee5af",
+        "rev": "f5e3abd4d9e1621bc0454efeb4757a8efee2ac80",
         "type": "github"
       },
       "original": {
@@ -365,11 +365,11 @@
         "tree-sitter-language-injection-nvim": "tree-sitter-language-injection-nvim"
       },
       "locked": {
-        "lastModified": 1787955449,
-        "narHash": "sha256-ELOXUneoxXQFwwVLEmaJuFIxKUAxdXf7/WkwTCNStYo=",
+        "lastModified": 1787956174,
+        "narHash": "sha256-mqKgixk8a9gQzyyoQZ5sN3GAZgCns+oPZu9tuUv/BAc=",
         "owner": "finistere",
         "repo": "neovim-flake",
-        "rev": "5de6bbbe8a4830ae50e4e78ea014e9ffd7d474b4",
+        "rev": "77b33553d45ce07e8589ab1909fef0e8e90a9dc0",
         "type": "github"
       },
       "original": {
