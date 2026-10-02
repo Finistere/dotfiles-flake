@@ -4,11 +4,9 @@
   inputs,
   system,
   ...
-}:
-{
+}: {
   home = {
-    packages =
-      with pkgs;
+    packages = with pkgs;
       [
         ripgrep
         tokei
@@ -20,9 +18,7 @@
         sd
       ]
       ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
-        claude-code
         crush
-        codex
         pi
         opencode
       ]);
@@ -54,7 +50,7 @@
         style = "compact";
         search_mode = "skim";
       };
-      flags = [ "--disable-up-arrow" ];
+      flags = ["--disable-up-arrow"];
     };
 
     ssh = {
