@@ -4,7 +4,10 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     neovim.url = "github:finistere/neovim-flake";
     llm-agents.url = "github:numtide/llm-agents.nix";
-    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tokyonight-nvim = {
       url = "github:folke/tokyonight.nvim";
       flake = false;

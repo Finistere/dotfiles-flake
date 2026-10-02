@@ -10,6 +10,8 @@
   users.users.${me.userName}.home = "/Users/${me.userName}";
 
   home-manager.users.${me.userName} = {
+    # Use the native app: Nix's Kitty launcher breaks macOS app registration.
+    programs.kitty.package = null;
     home = {
       packages = with pkgs; [
         colima
@@ -62,6 +64,7 @@
       "huggingface-cli"
     ];
     casks = [
+      "kitty"
       "google-chrome"
       "google-drive"
       "firefox"
@@ -85,8 +88,8 @@
       "wireshark-app"
       "codex-app"
       "claude"
-      "codex"
       "claude-code@latest"
+      "codex"
       "linear"
 
       # People
