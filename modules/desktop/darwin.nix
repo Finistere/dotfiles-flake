@@ -86,7 +86,7 @@
       "1password"
       "tailscale-app"
       "wireshark-app"
-      "codex-app"
+      # "chatgpt"
       "claude"
       "claude-code@latest"
       "codex"
